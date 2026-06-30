@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1782735386" />
+    <testcase name="test_shde_core" classname="test_shde_core" file="D:\Projects\Personal\NeuroHDC\hw\tb\test_shde_core.py" lineno="8" time="1.6895523071289062" sim_time_ns="235360.0" ratio_time="139303.17457880452" />
+  </testsuite>
+</testsuites>

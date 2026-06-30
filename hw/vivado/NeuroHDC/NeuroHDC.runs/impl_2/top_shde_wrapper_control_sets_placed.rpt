@@ -1,0 +1,107 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sun Jun 28 21:00:11 2026
+| Host         : LOHIT running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_shde_wrapper_control_sets_placed.rpt
+| Design       : top_shde_wrapper
+| Device       : xc7z010
+---------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    29 |
+|    Minimum number of control sets                        |    11 |
+|    Addition due to synthesis replication                 |    18 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    16 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    29 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    24 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              11 |           11 |
+| No           | No                    | Yes                    |              39 |           19 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               6 |            2 |
+| Yes          | No                    | Yes                    |            8704 |         2201 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+-----------------------------------------------------------------+-------------------+------------------+----------------+--------------+
+| Clock Signal |                          Enable Signal                          |  Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+-----------------------------------------------------------------+-------------------+------------------+----------------+--------------+
+|  clk         | core_inst/hdc_core_inst/l_sp0[1]_i_1_n_0                        |                   |                2 |              6 |         3.00 |
+|  clk         | core_inst/hdc_core_inst/state_reg[1]                            |                   |                6 |              6 |         1.00 |
+|  clk         | core_inst/hdc_core_inst/hv_ready_reg_4                          | core_inst/rst_n_0 |                2 |              8 |         4.00 |
+|  clk         |                                                                 |                   |               11 |             11 |         1.00 |
+|  clk         | core_inst/hdc_core_inst/bind_idx[4]_i_1_n_0                     | core_inst/rst_n_0 |                6 |             13 |         2.17 |
+|  clk         | valid_in                                                        | core_inst/rst_n_0 |                6 |             16 |         2.67 |
+|  clk         |                                                                 | core_inst/rst_n_0 |               19 |             39 |         2.05 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__16_n_0 |                   |               12 |             44 |         3.67 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__14_n_0 |                   |               14 |             53 |         3.79 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__15_n_0 |                   |               15 |             53 |         3.53 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__11_n_0 |                   |               15 |             57 |         3.80 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__13_n_0 |                   |               15 |             57 |         3.80 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__12_n_0 |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__8_n_0  |                   |               16 |             58 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__10_n_0 |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__5_n_0  |                   |               16 |             58 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__6_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__0_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__1_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__9_n_0  |                   |               16 |             58 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__7_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__2_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__3_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__4_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep_n_0     |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/fetch_idx[5]_i_1_n_0                    | core_inst/rst_n_0 |               83 |            211 |         2.54 |
+|  clk         | core_inst/tok_inst/tok_valid_out                                | core_inst/rst_n_0 |               62 |            264 |         4.26 |
+|  clk         | core_inst/hdc_core_inst/hv_ready_reg_0                          | core_inst/rst_n_0 |             1130 |           4096 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/final_hv[4095]_i_1_n_0                  | core_inst/rst_n_0 |              912 |           4096 |         4.49 |
++--------------+-----------------------------------------------------------------+-------------------+------------------+----------------+--------------+
+
+

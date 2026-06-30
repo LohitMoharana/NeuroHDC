@@ -1,0 +1,12 @@
+# Ignore dataset folders
+data/
+datasets/
+*.csv
+*.mat
+*.hdf5
+*.npy
+
+# Ignore OS files
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/

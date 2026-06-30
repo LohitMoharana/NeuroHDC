@@ -1,0 +1,371 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sun Jun 28 20:57:44 2026
+# Process ID: 16296
+# Current directory: D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.runs/synth_1_copy_1
+# Command line: vivado.exe -log top_shde_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_shde_wrapper.tcl
+# Log file: D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.runs/synth_1_copy_1/top_shde_wrapper.vds
+# Journal file: D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.runs/synth_1_copy_1\vivado.jou
+# Running On: LOHIT, OS: Windows, CPU Frequency: 1996 MHz, CPU Physical cores: 16, Host memory: 24717 MB
+#-----------------------------------------------------------
+source top_shde_wrapper.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/utils_1/imports/synth_1/synth_1_copy_1/top_shde_core.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/utils_1/imports/synth_1/synth_1_copy_1/top_shde_core.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_shde_wrapper -part xc7z010clg225-3 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Device 21-403] Loading part xc7z010clg225-3
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 8416
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [D:/Softwares/Vivado/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1192.059 ; gain = 408.023
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_shde_wrapper' [D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/sources_1/new/top_shde_wrapper.v:3]
+INFO: [Synth 8-6157] synthesizing module 'top_shde_core' [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:3]
+	Parameter D bound to: 4096 - type: integer 
+	Parameter WINDOW_SIZE bound to: 256 - type: integer 
+	Parameter CHUNK bound to: 128 - type: integer 
+	Parameter FOLDS bound to: 32 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/ch0.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:57]
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/ch1.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:58]
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/ch2.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:59]
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/item_up.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:60]
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/item_dn.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:61]
+INFO: [Synth 8-3876] $readmem data file 'D:/Projects/Personal/NeuroHDC/hw/tb/pos.dat' is read successfully [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:62]
+INFO: [Synth 8-6157] synthesizing module 'delta_tokenizer' [D:/Projects/Personal/NeuroHDC/hw/rtl/delta_tokenizer.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'delta_tokenizer' (0#1) [D:/Projects/Personal/NeuroHDC/hw/rtl/delta_tokenizer.v:3]
+INFO: [Synth 8-6157] synthesizing module 'hdc_bind_bundle' [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:3]
+	Parameter D bound to: 4096 - type: integer 
+	Parameter CHUNK bound to: 128 - type: integer 
+	Parameter FOLDS bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hdc_bind_bundle' (0#1) [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top_shde_core' (0#1) [D:/Projects/Personal/NeuroHDC/hw/rtl/top_shde_core.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top_shde_wrapper' (0#1) [D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/sources_1/new/top_shde_wrapper.v:3]
+WARNING: [Synth 8-7137] Register l_sp0_reg in module hdc_bind_bundle has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:48]
+WARNING: [Synth 8-7137] Register l_sp1_reg in module hdc_bind_bundle has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:51]
+WARNING: [Synth 8-7137] Register l_sp2_reg in module hdc_bind_bundle has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:54]
+WARNING: [Synth 8-7137] Register l_eow_reg in module hdc_bind_bundle has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Projects/Personal/NeuroHDC/hw/rtl/hdc_bind_bundle.v:111]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1328.395 ; gain = 544.359
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1328.395 ; gain = 544.359
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1328.395 ; gain = 544.359
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.104 . Memory (MB): peak = 1328.395 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.srcs/constrs_1/new/constraints.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1411.125 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.147 . Memory (MB): peak = 1412.203 ; gain = 1.078
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [D:/Softwares/Vivado/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg225-3
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'hdc_bind_bundle'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+               READ_WAIT |                               01 |                               01
+                    BIND |                               10 |                               10
+                    EVAL |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'hdc_bind_bundle'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   17 Bit       Adders := 1     
+	   4 Input    8 Bit       Adders := 128   
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
++---XORs : 
+	   2 Input    128 Bit         XORs := 8     
++---Registers : 
+	             4096 Bit    Registers := 2     
+	              128 Bit    Registers := 6     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 5     
++---ROMs : 
+	                    ROMs := 6     
++---Muxes : 
+	   2 Input 1024 Bit        Muxes := 1     
+	   2 Input  128 Bit        Muxes := 6     
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 1     
+	   4 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	   4 Input    5 Bit        Muxes := 2     
+	   5 Input    2 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 771   
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 12    
+	   4 Input    1 Bit        Muxes := 7     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++--------------------------+---------------+----------------+----------------------+------------------+
+|Module Name               | RTL Object    | Inference      | Size (Depth x Width) | Primitives       | 
++--------------------------+---------------+----------------+----------------------+------------------+
+|\core_inst/hdc_core_inst  | accum_mem_reg | User Attribute | 32 x 1024            | RAM32X1S x 1024  | 
++--------------------------+---------------+----------------+----------------------+------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1412.203 ; gain = 628.168
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1540.488 ; gain = 756.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++--------------------------+---------------+----------------+----------------------+------------------+
+|Module Name               | RTL Object    | Inference      | Size (Depth x Width) | Primitives       | 
++--------------------------+---------------+----------------+----------------------+------------------+
+|\core_inst/hdc_core_inst  | accum_mem_reg | User Attribute | 32 x 1024            | RAM32X1S x 1024  | 
++--------------------------+---------------+----------------+----------------------+------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch0_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch0_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch0_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch0_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch1_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch1_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch1_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch1_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch2_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch2_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch2_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_ch2_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_up_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_up_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_up_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_up_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_dn_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_dn_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_dn_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_item_dn_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_8 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_10 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_11 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_12 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_13 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_14 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_15 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_16 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_17 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_18 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_19 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_20 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_21 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_22 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_23 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_24 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_25 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_26 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_27 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_28 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_29 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_30 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core_inst/chunk_pos_t_reg_31 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1549.578 ; gain = 765.543
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 1553.332 ; gain = 769.297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 1553.332 ; gain = 769.297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1553.332 ; gain = 769.297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1553.332 ; gain = 769.297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1555.312 ; gain = 771.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1555.312 ; gain = 771.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   277|
+|2     |LUT1     |    11|
+|3     |LUT2     |   906|
+|4     |LUT3     |  1747|
+|5     |LUT4     |   413|
+|6     |LUT5     |   148|
+|7     |LUT6     |  2027|
+|8     |MUXF7    |   544|
+|9     |MUXF8    |   256|
+|10    |RAM32X1S |  1024|
+|11    |RAMB36E1 |    42|
+|53    |FDCE     |  8537|
+|54    |FDPE     |   206|
+|55    |FDRE     |     7|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1555.312 ; gain = 771.277
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:42 . Memory (MB): peak = 1555.312 ; gain = 687.469
+Synthesis Optimization Complete : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1555.312 ; gain = 771.277
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.126 . Memory (MB): peak = 1567.422 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 2143 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1576.047 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1024 instances were transformed.
+  RAM32X1S => RAM32X1S (RAMS32): 1024 instances
+
+Synth Design complete, checksum: 315eab6d
+INFO: [Common 17-83] Releasing license: Synthesis
+90 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:51 . Memory (MB): peak = 1576.047 ; gain = 1172.410
+INFO: [Common 17-1381] The checkpoint 'D:/Projects/Personal/NeuroHDC/hw/vivado/NeuroHDC/NeuroHDC.runs/synth_1_copy_1/top_shde_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_shde_wrapper_utilization_synth.rpt -pb top_shde_core_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Jun 28 20:58:42 2026...
