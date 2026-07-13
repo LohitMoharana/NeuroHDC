@@ -1,12 +1,30 @@
-# Ignore dataset folders
-data/
-datasets/
-*.csv
-*.mat
-*.hdf5
-*.npy
+IDEs and Editors
 
-# Ignore OS files
-.DS_Store
-__pycache__/
-.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+Python Virtual Environments & Cache
+
+pycache/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+Datasets and Large Files (Crucial: Do not commit data or weights)
+
+Datasets/
+data/
+*.pkl
+*.h5
+
+Hardware Simulation Artifacts
+
+hw/tb/sim.vvp
+hw/tb/.vcd
+hw/vivado/.Xil/
+hw/vivado/.jou
+hw/vivado/*.log
