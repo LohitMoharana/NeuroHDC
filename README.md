@@ -104,11 +104,11 @@ The class with the **minimum Hamming distance** dictates the final diagnosis.
 
 # 📊 2. Benchmarks and Results
 
-NeuroHDC was evaluated against established baselines (Classical ML, Edge-SNNs, and Deep CNNs) across four physiological datasets.
+NeuroHDC was evaluated against established baselines (**Classical ML, Edge-SNNs, and Deep CNNs**) across four physiological datasets.
 
 Detailed confusion matrices and F1-scores are generated dynamically in:
 
-```
+```text
 notebooks/benchmark_notebook.ipynb
 ```
 
@@ -119,7 +119,7 @@ notebooks/benchmark_notebook.ipynb
 | MIT-BIH | Arrhythmia / Morphology | **91.6%** | **93.7%** | ~97.5% (CNN) |
 | PTB | Myocardial Infarction | **90.2%** | **99.5%** | ~96.0% (LSTM) |
 | STT | ST-Elevations / Ischemia | **89.0%** | **98.7%** | ~93.0% (CNN) |
-| PhysioNet | AFib / Rhythm Analysis | **68.9%*** | **93.3%** | ~83.5% (CNN + LSTM) |
+| PhysioNet | AFib / Rhythm Analysis | **68.9%*** | **93.3%** | ~83.5% (CNN+LSTM) |
 
 > **Note on PhysioNet**
 >
@@ -158,34 +158,34 @@ NeuroHDC/
     └── Curated literature (ignored in public git history)
 ```
 
-### Directory Overview
+## Directory Overview
 
 | Folder | Description |
 |---------|-------------|
 | **src/** | Modular Python implementation containing `data_loader.py`, `tokenizer.py`, `hdc_encoding.py`, and `associative_mem.py`. |
 | **notebooks/** | End-to-end evaluation, visualization, benchmarking, and literature comparison. |
 | **scripts/** | Automated training pipelines and exporting binary test vectors for Verilog testbenches. |
-| **hw/** | Synthesizable Verilog RTL and cocotb verification framework. |
-| **Research Papers/** | Curated literature validating algorithmic baselines (ignored in public git history). |
+| **hw/** | Synthesizable RTL (Verilog) modules and cocotb verification frameworks. |
+| **Research Papers/** | Curated literature validating the algorithmic baselines *(ignored in public git history).* |
 
 ---
 
 # 🚀 Quick Start
 
-## 1. Clone Repository
+## 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/LohitMoharana/NeuroHDC.git
 cd NeuroHDC
 ```
 
-## 2. Install Dependencies
+## 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 3. Run Benchmark Suite
+## 3️⃣ Run the Comprehensive Benchmark Suite
 
 ```bash
 jupyter notebook notebooks/benchmark_notebook.ipynb
@@ -193,7 +193,9 @@ jupyter notebook notebooks/benchmark_notebook.ipynb
 
 ---
 
-# 📚 4. Core References
+# 📚 4. References & Benchmarks
+
+## 4.1 Core Architecture Foundations
 
 ### Foundational HDC
 
@@ -235,12 +237,100 @@ Pan, J., & Tompkins, W. J. (1985).
 
 ---
 
-# 📜 License
+# 4.2 Comparative Baseline Papers
 
-Distributed under the **MIT License**.
+To validate NeuroHDC against the current state-of-the-art, we compared our hardware-software pipeline against the following baseline architectures across four datasets.
 
 ---
 
-# ❤️ Acknowledgment
+## A. MIT-BIH Arrhythmia Database
 
-Developed for **robust, sub-milliwatt cardiac diagnostics at the extreme edge.**
+### 1D-CNN (Deep Learning)
+
+Kiranyaz, S., et al. (2015).
+
+*Real-Time Patient-Specific ECG Classification by 1-D Convolutional Neural Networks.*
+
+### Deep CNN SOTA
+
+Kachuee, M., et al. (2018).
+
+*ECG Heartbeat Classification: A Deep Transferable Representation.*
+
+### Neuromorphic SNN
+
+Luo, J., et al. (2020).
+
+*A Spiking Neural Network-Based ECG Classification System for Wearable Edge Devices.*
+
+---
+
+## B. PTB Diagnostic ECG Database (Myocardial Infarction)
+
+### CNN Baseline
+
+Acharya, U. R., et al. (2017).
+
+*Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.*
+
+### LSTM (Recurrent Deep Learning)
+
+Darmawahyuni, A., et al. (2019).
+
+*Deep Learning with a Recurrent Network Structure in the Automated Detection and Classification of Abnormality in ECG.*
+
+### SVM (Classical Machine Learning)
+
+Sharma, L. N., et al. (2015).
+
+*Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.*
+
+---
+
+## C. European ST-T Database (Ischemia)
+
+### Ensemble Machine Learning
+
+Pławiak, P. (2018).
+
+*Novel Methodology of Cardiac Health Recognition Based on ECG Signals and Evolutionary-Neural System.*
+
+### Neural Network
+
+Papaloukas, C., et al. (2001).
+
+*Use of Independent Component Analysis in the Diagnosis of Myocardial Ischaemia.*
+
+### Classical Machine Learning
+
+Safdarian, N., et al. (2014).
+
+*A New Pattern Recognition Method for Detection and Localization of Myocardial Ischemia in ECG Signals.*
+
+---
+
+## D. PhysioNet 2017 Challenge (AFib)
+
+### Challenge Standard
+
+Clifford, G. D., et al. (2017).
+
+*AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.*
+
+### CNN + LSTM SOTA
+
+Zihlmann, M., et al. (2017).
+
+*Convolutional Recurrent Neural Networks for Electrocardiogram Classification.*
+
+### Abductive AI
+
+Teijeiro, T., et al. (2017).
+
+*Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.*
+
+---
+
+# 📜 License
+
+Distributed under the **MIT License**. Developed for **robust, sub-milliwatt cardiac diagnostics at the extreme edge.**
