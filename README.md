@@ -255,29 +255,21 @@ jupyter notebook notebooks/benchmark_notebook.ipynb
 
 ### 7.1 Core Architecture Foundations
 
-**Foundational HDC**
+**Foundational HDC:**
 
-Kanerva, P. (2009). 
+Kanerva, P. (2009). *[Hyperdimensional Computing: An Introduction to Computing in Distributed Representation with High-Dimensional Random Vectors.](https://redwood.berkeley.edu/wp-content/uploads/2018/01/kanerva2009hyperdimensional.pdf)* Cognitive Computation, 1(2), 139–159.
 
-*[Hyperdimensional Computing: An Introduction to Computing in Distributed Representation with High-Dimensional Random Vectors.](https://redwood.berkeley.edu/wp-content/uploads/2018/01/kanerva2009hyperdimensional.pdf)* Cognitive Computation, 1(2), 139–159.
+**One-Shot Physiological Learning:**
 
-**One-Shot Physiological Learning**
+Rahimi, A., et al. (2016). *[Hyperdimensional Computing for Blind and One-Shot Classification of EEG Error-Related Potentials.](https://iis-people.ee.ethz.ch/~arahimi/papers/MONET17.pdf)* 50th Asilomar Conference on Signals, Systems and Computers.
 
-Rahimi, A., et al. (2016). 
+**In-Memory / Zero-MAC Hardware:**
 
-*[Hyperdimensional Computing for Blind and One-Shot Classification of EEG Error-Related Potentials.](https://iis-people.ee.ethz.ch/~arahimi/papers/MONET17.pdf)* 50th Asilomar Conference on Signals, Systems and Computers.
+Karunaratne, G., et al. (2020). *[In-memory Hyperdimensional Computing.](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Karunaratne2020.pdf)* Nature Electronics, 3(6), 327–337.
 
-**In-Memory / Zero-MAC Hardware**
+**Signal Pre-processing:**
 
-Karunaratne, G., et al. (2020). 
-
-*[In-memory Hyperdimensional Computing.](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Karunaratne2020.pdf)* Nature Electronics, 3(6), 327–337.
-
-**Signal Pre-processing**
-
-Pan, J., & Tompkins, W. J. (1985). 
-
-*[A Real-Time QRS Detection Algorithm.](https://www.robots.ox.ac.uk/~gari/teaching/cdt/A3/readings/ECG/Pan+Tompkins.pdf)* IEEE Transactions on Biomedical Engineering, (3), 230–236.
+Pan, J., & Tompkins, W. J. (1985). *[A Real-Time QRS Detection Algorithm.](https://www.robots.ox.ac.uk/~gari/teaching/cdt/A3/readings/ECG/Pan+Tompkins.pdf)* IEEE Transactions on Biomedical Engineering, (3), 230–236.
 
 ### 7.2 Comparative Baseline Papers
 
