@@ -249,19 +249,19 @@ To validate NeuroHDC against the current state-of-the-art, we compared our hardw
 
 Kiranyaz, S., et al. (2015).
 
-*Real-Time Patient-Specific ECG Classification by 1-D Convolutional Neural Networks.*
+*[Real-Time Patient-Specific ECG Classification by 1-D Convolutional Neural Networks.](https://ieeexplore.ieee.org/document/7202837)*
 
 ### Deep CNN SOTA
 
 Kachuee, M., et al. (2018).
 
-*ECG Heartbeat Classification: A Deep Transferable Representation.*
+*[ECG Heartbeat Classification: A Deep Transferable Representation.](https://arxiv.org/pdf/1805.00794)*
 
 ### Neuromorphic SNN
 
 Luo, J., et al. (2020).
 
-*A Spiking Neural Network-Based ECG Classification System for Wearable Edge Devices.*
+*[A Spiking Neural Network-Based ECG Classification System for Wearable Edge Devices.](https://openreview.net/pdf?id=V8yemRAs00-)*
 
 ---
 
@@ -271,19 +271,19 @@ Luo, J., et al. (2020).
 
 Acharya, U. R., et al. (2017).
 
-*Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.*
+*[Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.](https://www.researchgate.net/publication/317821702_Application_of_Deep_Convolutional_Neural_Network_for_Automated_Detection_of_Myocardial_Infarction_Using_ECG_Signals)*
 
 ### LSTM (Recurrent Deep Learning)
 
 Darmawahyuni, A., et al. (2019).
 
-*Deep Learning with a Recurrent Network Structure in the Automated Detection and Classification of Abnormality in ECG.*
+*[Deep Learning with a Recurrent Network Structure in the Automated Detection and Classification of Abnormality in ECG.](https://www.mdpi.com/1999-4893/12/6/118)*
 
 ### SVM (Classical Machine Learning)
 
 Sharma, L. N., et al. (2015).
 
-*Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.*
+*[Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.](https://ieeexplore.ieee.org/document/7047810)*
 
 ---
 
@@ -293,19 +293,19 @@ Sharma, L. N., et al. (2015).
 
 Pławiak, P. (2018).
 
-*Novel Methodology of Cardiac Health Recognition Based on ECG Signals and Evolutionary-Neural System.*
+*[Novel Methodology of Cardiac Health Recognition Based on ECG Signals and Evolutionary-Neural System.](https://www.academia.edu/35066469/Novel_Methodology_of_Cardiac_Health_Recognition_Based_on_ECG_Signals_and_Evolutionary_Neural_System)*
 
 ### Neural Network
 
-Papaloukas, C., et al. (2001).
+Papaloukas, C., et al. (2002).
 
-*Use of Independent Component Analysis in the Diagnosis of Myocardial Ischaemia.*
+*[An ischemia detection method based on artificial neural networks.](https://www.cs.uoi.gr/~arly/papers/ischemia_neural.pdf)*
 
 ### Classical Machine Learning
 
 Safdarian, N., et al. (2014).
 
-*A New Pattern Recognition Method for Detection and Localization of Myocardial Ischemia in ECG Signals.*
+*[A New Pattern Recognition Method for Detection and Localization of Myocardial Ischemia in ECG Signals.](https://www.researchgate.net/publication/270808246_A_New_Pattern_Recognition_Method_for_Detection_and_Localization_of_Myocardial_Infarction_Using_T-Wave_Integral_and_Total_Integral_as_Extracted_Features_from_One_Cycle_of_ECG_Signal)*
 
 ---
 
@@ -315,19 +315,19 @@ Safdarian, N., et al. (2014).
 
 Clifford, G. D., et al. (2017).
 
-*AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.*
+*[AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.](https://ieeexplore.ieee.org/document/8331486)*
 
 ### CNN + LSTM SOTA
 
 Zihlmann, M., et al. (2017).
 
-*Convolutional Recurrent Neural Networks for Electrocardiogram Classification.*
+*[Convolutional Recurrent Neural Networks for Electrocardiogram Classification.](https://ieeexplore.ieee.org/document/8331491)*
 
 ### Abductive AI
 
 Teijeiro, T., et al. (2017).
 
-*Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.*
+*[Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.](https://arxiv.org/pdf/1802.05998)*
 
 ---
 
