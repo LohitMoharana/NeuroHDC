@@ -41,7 +41,7 @@ Evaluated with 5-fold stratified cross-validation on the MIT-BIH Arrhythmia Data
            │
            ▼
 ┌──────────────────────┐
-│ HDC XOR Encoder       │
+│    HDC XOR Encoder   │
 └──────────────────────┘
            │
            ▼
@@ -54,8 +54,8 @@ Evaluated with 5-fold stratified cross-validation on the MIT-BIH Arrhythmia Data
            │
            ▼
 ┌──────────────────────┐
-│ Associative Memory    │
-│ (Hamming Distance)    │
+│  Associative Memory  │
+│  (Hamming Distance)  │
 └──────────────────────┘
            │
            ▼
