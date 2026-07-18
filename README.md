@@ -275,7 +275,7 @@ NeuroHDC/
 ├── scripts/
 │   ├── 01_train_python.py        # NeuroHDC patient-isolated 5-fold CV training
 │   ├── 03_train_baselines.py     # Self-trained 1D-CNN baseline (patient-isolated, matches NeuroHDC split)
-│   └── export_vectors.py         # Export binary test vectors for Verilog testbenches
+│   └── 02_export_vectors.py      # Export binary test vectors for Verilog testbenches
 │
 ├── hw/
 │   ├── rtl/                      # Synthesizable Verilog modules
