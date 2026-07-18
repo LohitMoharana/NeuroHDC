@@ -254,6 +254,8 @@ The core datapath was synthesized, placed, and routed through the open-source Op
 - **Future work -- clock gating:** the 82.9% internal-power dominance identifies architectural clock gating (disabling the clock tree to inactive datapath blocks during sparse periods) as the highest-leverage optimization for a future iteration of this accelerator.
 - **Process node:** SkyWater 130nm is a legacy node; a modern low-power node (e.g., 22nm or below) would be expected to reduce these figures substantially, though this has not been evaluated.
 
+**ASIC energy per inference (computed self-consistently, at the ASIC's own 50 MHz clock -- not mixed with the FPGA's 100 MHz figures):** the same 120,000-cycle end-to-end pipeline takes 120,000 / 50 MHz = 2.4 ms at this clock rate. Combined with the 93.6 mW full-architecture projection above, this yields an estimated **224.6 uJ per inference** for the ASIC implementation -- noticeably less favorable than the FPGA's 1.25 uJ figure (Section 2.1), reflecting SkyWater 130nm being a legacy, higher-power-density node relative to the FPGA fabric at comparable activity levels. **The FPGA figure (Section 2.1) remains the primary efficiency comparison against the CNN baseline**, since it is the platform where both NeuroHDC and the deployment-target comparison are self-consistent; the ASIC figure is reported separately as a distinct, real physical measurement, not merged into the main comparison table, and carries the same scaling/SRAM caveats noted above.
+
 ---
 
 ## 📁 7. Repository Structure & Reproducibility
@@ -278,7 +280,10 @@ NeuroHDC/
 ├── hw/
 │   ├── rtl/                      # Synthesizable Verilog modules
 │   ├── tb/                       # Testbenches
-│   └── cocotb/                   # Bit-true verification framework
+│   ├── cocotb/                   # Bit-true verification framework
+│   └── asic/                     # OpenLane/OpenROAD physical implementation
+│       ├── tb_power_gls.v        # Gate-level simulation testbench (activity-annotated power)
+│       └── power_vcd_final.tcl   # OpenROAD read_power_activities script
 │
 ├── Research Papers/               # Curated literature supporting the algorithmic baselines
 │
