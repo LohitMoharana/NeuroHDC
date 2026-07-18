@@ -225,8 +225,34 @@ To make comparisons against published baselines as fair as reasonably possible, 
 
 ## ⚡ 6. Hardware Validation
 
-- **Bit-true precision:** the Verilog implementation (`hw/rtl/`) was validated against the Python software encoder using **cocotb** RTL simulation, showing 0-bit Hamming distance variance between the two.
-- **Power estimation:** evaluated via Xilinx Vivado post-synthesis power reports, targeting Zynq-7000 / Artix-7 fabric. Estimated dynamic core power is **< 1.0 mW**.
+### 6.1 RTL / Software Bit-True Verification
+
+- **Bit-true precision:** the Verilog implementation (`hw/rtl/`) was validated against the Python software encoder using **cocotb** RTL simulation across four independently seeded runs, showing 0-bit Hamming distance variance between hardware and software output on every run.
+
+### 6.2 FPGA Power Estimation
+
+- Evaluated via Xilinx Vivado post-synthesis power reports, targeting Zynq-7000 / Artix-7 fabric. **Dynamic core power is < 1.0 mW**; total on-chip power (dominated by fixed FPGA fabric static leakage, not architectural activity) is ~92 mW. The dynamic figure is the architecturally meaningful one; static leakage on FPGA reflects reconfigurable-fabric overhead that would not be present on a custom ASIC.
+
+### 6.3 ASIC Implementation & Activity-Annotated Power (SkyWater 130nm)
+
+The core datapath was synthesized, placed, and routed through the open-source OpenLane flow targeting the SkyWater 130nm PDK (`sky130_fd_sc_hd`), achieving a fully signed-off GDSII layout at 50 MHz with **zero setup/hold timing violations**.
+
+**Methodology:** to avoid severe routing congestion from a full 4096-bit register file, a 2-fold slice (D = 256) containing the complete Boolean datapath (Delta-Tokenizer logic, MUX structures, and parallel Popcount adder trees) was synthesized, placed, and routed. Dynamic power was validated via **activity-annotated Gate-Level Simulation (GLS)**: the synthesized `top_shde_wrapper` netlist was simulated against Sky130 standard cell primitives (`sky130_fd_sc_hd.v`) using `iverilog`, driven by real sparse ECG test vectors, producing a VCD from which OpenROAD (`read_power_activities`) mapped **297,300 physical pin activities** for high-fidelity power annotation — not default toggle-rate estimation.
+
+**Result:** total active power for the 2-fold slice was **5.85 mW**, with switching power minimized to **1.00 mW (17.1%)** due to the ECG data's inherent sparsity, while internal power — dominated by clock distribution and sequential flip-flop toggling, which occurs every cycle regardless of data sparsity — accounted for **4.85 mW (82.9%)** of the total.
+
+| Component | Power | Share |
+|---|---:|---:|
+| Internal (clock tree + FF toggling) | 4.85 mW | 82.9% |
+| Switching (data-dependent) | 1.00 mW | 17.1% |
+| **Total (2-fold slice)** | **5.85 mW** | 100% |
+
+**Methodological constraints (disclosed explicitly):**
+- **Full-architecture projection:** full-chip dynamic power is estimated at **93.6 mW**, via linear extrapolation (16x) of the routed 2-fold slice. This is an idealized lower bound -- it does not model the non-linear routing congestion or extended clock-tree buffering that a full 32-fold planar layout would require, and should not be read as a signed-off full-chip result.
+- **Macro leakage excluded:** the reported figures reflect logic and clock distribution only. Static leakage and dynamic read/write energy for the prototype SRAM storage macros were excluded from this synthesis run (no memory macro was compiled) and remain unmodeled.
+- **Resizer optimization disabled:** to prioritize flow completion for this power/area estimate, standard-cell resizer optimizations were disabled; the design carries max slew/fanout/capacitance warnings at the typical corner that a production-grade closure pass would need to address.
+- **Future work -- clock gating:** the 82.9% internal-power dominance identifies architectural clock gating (disabling the clock tree to inactive datapath blocks during sparse periods) as the highest-leverage optimization for a future iteration of this accelerator.
+- **Process node:** SkyWater 130nm is a legacy node; a modern low-power node (e.g., 22nm or below) would be expected to reduce these figures substantially, though this has not been evaluated.
 
 ---
 
