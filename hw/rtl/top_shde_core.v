@@ -54,12 +54,21 @@ module top_shde_core #(
     (* ram_style = "block" *) reg [CHUNK-1:0] pos_bram [0:WINDOW_SIZE*FOLDS-1];
 
     initial begin
+`ifdef ASIC_FLOW
+        $readmemb("/openlane/designs/neurohdc/src/ch0.dat", ch0_bram);
+        $readmemb("/openlane/designs/neurohdc/src/ch1.dat", ch1_bram);
+        $readmemb("/openlane/designs/neurohdc/src/ch2.dat", ch2_bram);
+        $readmemb("/openlane/designs/neurohdc/src/item_up.dat", item_up_bram);
+        $readmemb("/openlane/designs/neurohdc/src/item_dn.dat", item_dn_bram);
+        $readmemb("/openlane/designs/neurohdc/src/pos.dat", pos_bram);
+`else
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/ch0.dat", ch0_bram);
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/ch1.dat", ch1_bram);
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/ch2.dat", ch2_bram);
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/item_up.dat", item_up_bram);
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/item_dn.dat", item_dn_bram);
         $readmemb("D:/Projects/Personal/NeuroHDC/hw/tb/pos.dat", pos_bram);
+`endif
     end
 
     wire [4:0] rom_addr_out;

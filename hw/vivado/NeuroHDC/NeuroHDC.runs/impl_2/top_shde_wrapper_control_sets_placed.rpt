@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Jun 28 21:00:11 2026
+| Date         : Wed Jul 15 20:35:56 2026
 | Host         : LOHIT running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_shde_wrapper_control_sets_placed.rpt
 | Design       : top_shde_wrapper
@@ -73,8 +73,8 @@ Table of Contents
 +--------------+-----------------------------------------------------------------+-------------------+------------------+----------------+--------------+
 | Clock Signal |                          Enable Signal                          |  Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +--------------+-----------------------------------------------------------------+-------------------+------------------+----------------+--------------+
-|  clk         | core_inst/hdc_core_inst/l_sp0[1]_i_1_n_0                        |                   |                2 |              6 |         3.00 |
 |  clk         | core_inst/hdc_core_inst/state_reg[1]                            |                   |                6 |              6 |         1.00 |
+|  clk         | core_inst/hdc_core_inst/l_sp0[1]_i_1_n_0                        |                   |                2 |              6 |         3.00 |
 |  clk         | core_inst/hdc_core_inst/hv_ready_reg_4                          | core_inst/rst_n_0 |                2 |              8 |         4.00 |
 |  clk         |                                                                 |                   |               11 |             11 |         1.00 |
 |  clk         | core_inst/hdc_core_inst/bind_idx[4]_i_1_n_0                     | core_inst/rst_n_0 |                6 |             13 |         2.17 |
@@ -85,18 +85,18 @@ Table of Contents
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__15_n_0 |                   |               15 |             53 |         3.53 |
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__11_n_0 |                   |               15 |             57 |         3.80 |
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__13_n_0 |                   |               15 |             57 |         3.80 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__12_n_0 |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__8_n_0  |                   |               16 |             58 |         3.62 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__10_n_0 |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__5_n_0  |                   |               16 |             58 |         3.62 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__6_n_0  |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__0_n_0  |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__1_n_0  |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__9_n_0  |                   |               16 |             58 |         3.62 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__7_n_0  |                   |               15 |             58 |         3.87 |
-|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__2_n_0  |                   |               15 |             58 |         3.87 |
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__3_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__5_n_0  |                   |               16 |             58 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__7_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__9_n_0  |                   |               16 |             58 |         3.62 |
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__4_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__12_n_0 |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__1_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__2_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__8_n_0  |                   |               16 |             58 |         3.62 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__6_n_0  |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__10_n_0 |                   |               15 |             58 |         3.87 |
+|  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep__0_n_0  |                   |               15 |             58 |         3.87 |
 |  clk         | core_inst/hdc_core_inst/FSM_sequential_state_reg[1]_rep_n_0     |                   |               15 |             58 |         3.87 |
 |  clk         | core_inst/hdc_core_inst/fetch_idx[5]_i_1_n_0                    | core_inst/rst_n_0 |               83 |            211 |         2.54 |
 |  clk         | core_inst/tok_inst/tok_valid_out                                | core_inst/rst_n_0 |               62 |            264 |         4.26 |

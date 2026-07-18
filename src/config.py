@@ -1,5 +1,3 @@
-# src/config.py
-
 class SHDEConfig:
     """
     Global hardware and algorithmic parameters for the Spiking-HDC pipeline.

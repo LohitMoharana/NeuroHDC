@@ -1,0 +1,5 @@
+Dataset,Strict Multi-Class,Binary Anomaly,Sparsity (Sleep Time),FP / FN Ratio,Primary Challenge
+MITBIH,89.84%,91.64%,93.69%,1299 / 373,Morphology & Class Imbalance
+PTB,90.19%,90.19%,99.45%,49 / 161,Baseline Shift (Infarction)
+STT,88.99%,88.99%,98.73%,104 / 85,Subtle Morphological Overlap
+PHYSIONET,61.40%,68.97%,93.32%,2028 / 2993,Non-stationary Rhythm Noise

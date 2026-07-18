@@ -1,30 +1,44 @@
-IDEs and Editors
+﻿# Python artifacts
+__pycache__/
+*.pyc
 
-.idea/
-.vscode/
-*.swp
-*.swo
-
-Python Virtual Environments & Cache
-
-pycache/
-*.py[cod]
-*$py.class
-venv/
-env/
-.env
-
-Datasets and Large Files (Crucial: Do not commit data or weights)
-
-Datasets/
+# Large datasets and model checkpoints
 data/
 *.pkl
-*.h5
 
-Hardware Simulation Artifacts
+# Hardware/EDA artifacts
+*.vcd
+*.gds
+*.gds.gz
+runs/
+.ciel/
 
-hw/tb/sim.vvp
-hw/tb/.vcd
-hw/vivado/.Xil/
-hw/vivado/.jou
-hw/vivado/*.log
+# Exclude Research Papers folder if it's large/PDFs
+Research Papers/*.pdf
+
+# Local analysis scratchpads (Not for public repo)
+scripts/04_physionet_analysis.py
+scripts/05_dimension_ablation.py
+scripts/06_mitbih_analysis.py
+scripts/08_final_mitbih_matrix.py
+scripts/09_fold_distribution_check.py
+assets/
+
+# Large datasets and model checkpoints
+Datasets/
+checkpoints/
+*.pkl
+
+@"
+
+
+# Vivado Build Artifacts
+*.exe
+*.a
+*.jou
+*.log
+*.dir/
+*.sim/
+*.runs/
+*.cache/
+*.hw/
