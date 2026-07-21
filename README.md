@@ -352,34 +352,32 @@ Karunaratne, G., et al. (2020). *[In-memory Hyperdimensional Computing.](https:/
 Pan, J., & Tompkins, W. J. (1985). *[A Real-Time QRS Detection Algorithm.](https://www.robots.ox.ac.uk/~gari/teaching/cdt/A3/readings/ECG/Pan+Tompkins.pdf)* IEEE Transactions on Biomedical Engineering, (3), 230–236.
 
 **Inter-Patient Evaluation Protocol:**
-de Chazal, P., O'Dwyer, M., & Reilly, R. B. (2004). *Automatic classification of heartbeats using ECG morphology and heartbeat interval features.* IEEE Transactions on Biomedical Engineering, 51(7), 1196–1206.
+de Chazal, P., O'Dwyer, M., & Reilly, R. B. (2004). *[Automatic classification of heartbeats using ECG morphology and heartbeat interval features.](https://ieeexplore.ieee.org/document/1306572)* IEEE Transactions on Biomedical Engineering, 51(7), 1196–1206. **Verified: 86.24% accuracy, inter-patient protocol** (the standard inter-patient reference point for MIT-BIH).
 
-> ⚠️ **Note on quantitative claims below:** specific accuracy/F1 figures attributed to comparison papers in this section (e.g., "~83–86%", "~89%", "~86.5%") have **not been independently verified against the source papers** as part of this review and should be confirmed by reading each cited paper directly before being stated as fact in a manuscript. Treat them as placeholders pending verification, not confirmed figures.
+### 8.2 Comparative Baseline Papers (by dataset) — Verified Figures
 
-### 8.2 Comparative Baseline Papers (by dataset)
+All figures below were checked directly against primary sources (paper abstracts, arXiv, IEEE Xplore, or the official PhysioNet Challenge results page) rather than secondary citations.
 
 **A. MIT-BIH Arrhythmia Database**
-- Kiranyaz, S., et al. (2015). *[Real-Time Patient-Specific ECG Classification by 1-D Convolutional Neural Networks.](https://ieeexplore.ieee.org/document/7202837)* — intra-patient evaluation; not directly comparable without adjustment.
-- Kachuee, M., et al. (2018). *[ECG Heartbeat Classification: A Deep Transferable Representation.](https://arxiv.org/pdf/1805.00794)* — intra-patient (random beat split) evaluation; reported >97% accuracy is not comparable to inter-patient results without this caveat stated explicitly.
-- Luo, J., et al. (2020). *[A Spiking Neural Network-Based ECG Classification System for Wearable Edge Devices.](https://openreview.net/pdf?id=V8yemRAs00-)* — neuromorphic comparator; verify whether their reported accuracy is intra- or inter-patient before citing as a direct comparison.
-- de Chazal, P., et al. (2004) — see above; the standard inter-patient reference point for MIT-BIH.
+- de Chazal, P., O'Dwyer, M., & Reilly, R. B. (2004) — see Section 8.1. **86.24% accuracy, inter-patient.**
+- Kachuee, M., Fazeli, S., & Sarrafzadeh, M. (2018). *[ECG Heartbeat Classification: A Deep Transferable Representation.](https://arxiv.org/abs/1805.00794)* IEEE International Conference on Healthcare Informatics (ICHI). **Verified: 93.40% accuracy on MIT-BIH, intra-patient (random 80/20 beat-level split) — not directly comparable to inter-patient results without this caveat.**
 
 **B. PTB Diagnostic ECG Database (Myocardial Infarction)**
-- Acharya, U. R., et al. (2017). *[Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.](https://www.researchgate.net/publication/317821702_Application_of_Deep_Convolutional_Neural_Network_for_Automated_Detection_of_Myocardial_Infarction_Using_ECG_Signals)*
-- Darmawahyuni, A., et al. (2019). *[Deep Learning with a Recurrent Network Structure in the Automated Detection and Classification of Abnormality in ECG.](https://www.mdpi.com/1999-4893/12/6/118)*
-- Sharma, L. N., et al. (2015). *[Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.](https://ieeexplore.ieee.org/document/7047810)*
+- Sharma, L. N., et al. (2015). *[Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.](https://ieeexplore.ieee.org/document/7047810)* IEEE Transactions on Biomedical Engineering. **Verified: 96% accuracy / 93% sensitivity / 99% specificity, MI detection.**
+- Kachuee, M., Fazeli, S., & Sarrafzadeh, M. (2018) — see above. **Verified: 95.9% accuracy on PTB, intra-patient (80/20 split).**
+- Acharya, U. R., Fujita, H., Oh, S. L., Hagiwara, Y., Tan, J. H., & Adam, M. (2017). *[Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.](https://www.researchgate.net/publication/317821702_Application_of_Deep_Convolutional_Neural_Network_for_Automated_Detection_of_Myocardial_Infarction_Using_ECG_Signals)* Information Sciences, 415, 190–198. **Verified from primary abstract: 95.22% accuracy (denoised ECG beats) / 93.53% accuracy (with noise, no denoising). No feature extraction or selection performed.**
 
 **C. European ST-T Database (Ischemia)**
-- Pławiak, P. (2018). *[Novel Methodology of Cardiac Health Recognition Based on ECG Signals and Evolutionary-Neural System.](https://www.academia.edu/35066469/Novel_Methodology_of_Cardiac_Health_Recognition_Based_on_ECG_Signals_and_Evolutionary_Neural_System)*
-- Papaloukas, C., et al. (2002). *[An Ischemia Detection Method Based on Artificial Neural Networks.](https://www.cs.uoi.gr/~arly/papers/ischemia_neural.pdf)*
-- Safdarian, N., et al. (2014). *[A New Pattern Recognition Method for Detection and Localization of Myocardial Ischemia in ECG Signals.](https://www.researchgate.net/publication/270808246_A_New_Pattern_Recognition_Method_for_Detection_and_Localization_of_Myocardial_Infarction_Using_T-Wave_Integral_and_Total_Integral_as_Extracted_Features_from_One_Cycle_of_ECG_Signal)*
-- Smrdel, A., & Jager, F. (2004). *Automated detection of transient ST-segment episodes in 24h ambulatory ECG recordings.* Medical & Biological Engineering & Computing. *(cited via secondary source — verify directly before use.)*
+- Papaloukas, C., et al. (2002). *[An Ischemia Detection Method Based on Artificial Neural Networks.](https://www.cs.uoi.gr/~arly/papers/ischemia_neural.pdf)* **Verified from primary abstract: not a single "accuracy" figure — reports sensitivity (Se) and positive predictive accuracy (PPA) separately: Se 90% / PPA 89% (gross aggregate statistics) or Se 86% / PPA 87% (average aggregate statistics); beat-level classifier alone reports Se 90% / Sp 90%.**
+- *(Note: Pławiak (2018), previously listed here, has been removed — verification found it evaluates 17-class arrhythmia classification on MIT-BIH-derived data, not the European ST-T database, and is not a valid comparator for this task. No second verified ST-T comparator has been found yet; this is an open gap rather than filled with an unverified figure.)*
 
 **D. PhysioNet 2017 Challenge (AFib)**
-- Clifford, G. D., et al. (2017). *[AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.](https://ieeexplore.ieee.org/document/8331486)*
-- Zihlmann, M., et al. (2017). *[Convolutional Recurrent Neural Networks for Electrocardiogram Classification.](https://ieeexplore.ieee.org/document/8331491)*
-- Teijeiro, T., et al. (2017). *[Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.](https://arxiv.org/pdf/1802.05998)*
-
+- Clifford, G. D., et al. (2017). *[AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.](https://ieeexplore.ieee.org/document/8331486)* — official Challenge description.
+- Four teams tied for first place in the official Challenge at **F1 = 0.83** (verified directly from the [official PhysioNet Challenge results](https://moody-challenge.physionet.org/2017/results/)):
+  - Teijeiro, T., García, C. A., Félix, P., & Castro, D. (2017). *[Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.](https://arxiv.org/pdf/1802.05998)* Follow-up simplified model reached **F1 = 0.85**.
+  - Datta, S., Puri, C., Mukherjee, A., Banerjee, R., Dutta Choudhury, A., Ukil, A., Bandyopadhyay, S., Singh, R., Pal, A., & Khandelwal, S. (2017). *Identifying Normal, AF and Other Abnormal ECG Rhythms Using a Cascaded Binary Classifier.*
+  - Hong, S., Wu, M., Zhou, Y., Wang, Q., Shang, J., Li, H., & Xie, J. (2017). *ENCASE: An Ensemble Classifier for ECG Classification Using Expert Features and Deep Neural Networks.*
+  - Zabihi, M., Bahrami Rad, A., Katsaggelos, A. K., Kiranyaz, S., Narkilahti, S., & Gabbouj, M. (2017). *Detection of Atrial Fibrillation in ECG Signals Using an Ensemble of Random Forest Classifiers.*
 ---
 
 ## 🎯 Key Contributions
