@@ -26,6 +26,19 @@ Critically, when a self-trained 1D-CNN baseline is evaluated under this same pat
 
 ---
 
+## 🗺️ How to Read This Repository
+
+This project has a lot of supporting depth — use this as a map rather than reading top to bottom:
+
+- **Just want the headline results?** → Section 2 (Experimental Rigor) has the full results table; Section 2.1 has the efficiency comparison against the CNN baseline.
+- **Want the full, reproducible analysis with figures and confusion matrices?** → `notebooks/benchmark_notebook.ipynb` — runs end-to-end locally and regenerates every result and figure from real data (no hardcoded numbers anywhere).
+- **Reviewing the architecture itself?** → Section 1 (Architectural Methodology) walks through all five pipeline stages.
+- **Checking the hardware claims specifically?** → Section 6 (Hardware Validation) covers both FPGA (Vivado, cocotb bit-true verification) and ASIC (OpenLane/SkyWater 130nm, activity-annotated power) results, with all methodological caveats disclosed explicitly.
+- **Verifying literature comparisons?** → Section 8 — every figure is checked against a primary source, with direct links.
+- **Want to know what's known-limited or still open?** → Section 4 (Rhythm Binding: A Tale of Two Failure Modes) and Section 5 (Evaluation Methodology Alignment) document this project's own limitations honestly rather than only presenting favorable results.
+
+---
+
 ## 🏗 Architecture
 
 ```text
