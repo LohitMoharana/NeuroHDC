@@ -1,433 +1,145 @@
-# 🧠 NeuroHDC: High-Efficiency Edge-AI ECG Classification using Spiking-Hyperdimensional Computing
+# NeuroHDC: Zero-MAC, Event-Sparse Hyperdimensional Computing for ECG Classification
 
-<p align="center">
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg) ![Verilog](https://img.shields.io/badge/RTL-Verilog-orange.svg) ![FPGA](https://img.shields.io/badge/FPGA-Zynq--7000-green.svg) ![License](https://img.shields.io/badge/License-MIT-red.svg) ![Status](https://img.shields.io/badge/Research-Prototype-success.svg)
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![Verilog](https://img.shields.io/badge/RTL-Verilog-orange.svg)
-![FPGA](https://img.shields.io/badge/FPGA-Zynq%20%7C%20Artix--7-green.svg)
-![License](https://img.shields.io/badge/License-MIT-red.svg)
-![Status](https://img.shields.io/badge/Research-Prototype-success.svg)
+> A zero-MAC, event-sparse hyperdimensional (HDC) architecture for ECG classification, evaluated with group-isolated five-fold cross-validation on four public ECG datasets, with an FPGA implementation and a placed-and-routed scaled-down ASIC datapath.
 
-</p>
+This repository accompanies the manuscript *"NeuroHDC: A Zero-MAC Event-Sparse Hyperdimensional Architecture for ECG Classification with FPGA Implementation and ASIC Datapath Characterization"* (submitted to IEEE TBioCAS). **All numbers below are the frozen values reported in the manuscript.**
 
-> **Ultra-efficient, zero-multiplier Edge-AI ECG classification using Spiking Hyperdimensional Computing (HDC), evaluated under strict inter-patient (patient-isolated) cross-validation.**
+## What this is, and is not
 
-NeuroHDC is a hardware-efficient framework for ECG arrhythmia classification. This repository contains the complete algorithmic proof-of-concept, dataset loaders, a self-trained deep learning baseline, patient-isolated 5-fold cross-validated benchmarking, and the bit-true Verilog hardware description for our proposed **Spiking-Hyperdimensional Computing (HDC)** architecture.
+- **Zero-MAC** means the inference datapath contains no multiply-accumulate hardware. It does not mean zero computation, zero switching or zero energy.
+- **Event-sparse** (not event-driven): the representation is sparse, but the RTL is synchronous and clocked.
+- The implemented **RTL covers event encoding, binding, bundling and output serialization**. The associative-memory (Hamming-distance) classifier and the R-R rhythm-binding stage are evaluated in the Python reference model and are **not** in the characterized RTL.
+- Power figures are **tool estimates** (Vivado, OpenLane/OpenSTA), not physical measurements. No silicon was fabricated.
 
----
-
-## 📄 Abstract
-
-The deployment of deep learning (CNNs, LSTMs) on wearable, battery-powered medical devices is constrained by the **"Power Wall"** — the energy cost of floating-point Multiply-Accumulate (MAC) operations. NeuroHDC explores an alternative: a unified hardware-software architecture combining event-driven sparsity with the Boolean geometry of Hyperdimensional Computing (HDC). Analog ECG signals are tokenized into sparse events and encoded into a **4096-dimensional binary hypervector**, eliminating MAC units from the inference datapath entirely.
-
-Unlike much of the HDC literature, which evaluates with random beat-level splits, NeuroHDC is evaluated using **strict patient-isolated (inter-patient) 5-fold cross-validation** across four clinical datasets — no beat from a given patient's recording ever appears in both the training and test set of a fold. This is a substantially harder and more clinically realistic protocol, and produces correspondingly more modest but honest numbers: **70.99% ± 5.83% strict multi-class accuracy / 35.77% ± 6.81% macro F1 on MIT-BIH**, with morphology-dominant tasks (PTB, ST-T) performing considerably better than the rhythm-dominant AFib task (PhysioNet). A lightweight **R-R interval permutation-binding** extension is introduced to address timing-based failure modes, which helps meaningfully for isolated ectopic beats (MIT-BIH PACs) but does not rescue the non-stationary rhythm of atrial fibrillation (PhysioNet) — a documented, mechanistically-explained limitation rather than an unexplained gap.
-
-Critically, when a self-trained 1D-CNN baseline is evaluated under this same patient-isolated protocol, its accuracy collapses from an intra-patient 98.66% to **72.72% ± 8.11%** — confirming that much of its earlier apparent advantage was itself a beat-level leakage artifact rather than genuine generalization. Under honest, identical splits, NeuroHDC and the CNN achieve **statistically comparable macro F1** (35.77% vs. 34.56%, well within each other's variance), while NeuroHDC operates at roughly **40x lower latency and 360x lower energy per inference**. The efficiency-accuracy trade-off this architecture was designed around turns out, under rigorous evaluation, to be closer to an efficiency win at comparable accuracy than a genuine accuracy sacrifice.
-
----
-
-## 🗺️ How to Read This Repository
-
-This project has a lot of supporting depth — use this as a map rather than reading top to bottom:
-
-- **Just want the headline results?** → Section 2 (Experimental Rigor) has the full results table; Section 2.1 has the efficiency comparison against the CNN baseline.
-- **Want the full, reproducible analysis with figures and confusion matrices?** → `notebooks/benchmark_notebook.ipynb` — runs end-to-end locally and regenerates every result and figure from real data (no hardcoded numbers anywhere).
-- **Reviewing the architecture itself?** → Section 1 (Architectural Methodology) walks through all five pipeline stages.
-- **Checking the hardware claims specifically?** → Section 6 (Hardware Validation) covers both FPGA (Vivado, cocotb bit-true verification) and ASIC (OpenLane/SkyWater 130nm, activity-annotated power) results, with all methodological caveats disclosed explicitly.
-- **Verifying literature comparisons?** → Section 8 — every figure is checked against a primary source, with direct links.
-- **Want to know what's known-limited or still open?** → Section 4 (Rhythm Binding: A Tale of Two Failure Modes) and Section 5 (Evaluation Methodology Alignment) document this project's own limitations honestly rather than only presenting favorable results.
-
----
-
-## 🏗 Architecture
+## Architecture
 
 ```text
-        Raw ECG
-           │
-           ▼
-┌──────────────────────┐
-│ Pre-processing & AGC │
-└──────────────────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ Delta Spike Tokenizer│
-└──────────────────────┘
-           │
-           ▼
-┌──────────────────────┐
-│    HDC XOR Encoder   │
-└──────────────────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ Majority Accumulator │
-└──────────────────────┘
-           │
-           ▼
-    4096-bit Hypervector
-           │
-           ▼
-┌──────────────────────┐
-│  Associative Memory  │
-│  (Hamming Distance)  │
-└──────────────────────┘
-           │
-           ▼
-      ECG Diagnosis
+Raw ECG -> Preprocessing -> Delta tokenizer -> C/P/T XOR binding -> Majority bundling
+        -> 4096-bit hypervector -> Associative memory (software) -> Class
 ```
 
----
+1. **Preprocessing.** 0.5 s rolling-mean baseline removal; 256-sample window centered on the beat. MIT-BIH and European ST-T use expert annotations for centering; PTB and PhysioNet 2017 use a simple amplitude-threshold peak detector (60% of record maximum). A Pan-Tompkins detector is not implemented or tested here, so its errors are not in the reported metrics. MIT-BIH and PhysioNet windows are mean-subtracted, clipped and scaled by the window's 98th-percentile absolute value; PTB and ST-T windows are baseline-subtracted and scaled by the window maximum.
+2. **Delta tokenizer.** First difference with three fixed thresholds [0.05, 0.25, 0.6] (one per channel, symmetric +/-). RTL integer thresholds: **[1638, 8192, 19660]** (about 0.05, 0.25, 0.60 of 32767). Measured zero-token rate on the full MIT-BIH set: **96.491%**.
+3. **Binding and bundling.** B(t) = C xor P xor T (bipolar multiplication in Python is equivalent to XOR in RTL), majority-bundled over the window into one 4096-bit hypervector. C/P/T vectors are pre-generated and loaded from memory files (`$readmemb`), not generated by an LFSR.
+4. **Classification.** Hamming distance to class prototypes; one-shot training plus 30 epochs of error-driven refinement (software).
+5. **Optional R-R rhythm binding.** SHORT/NORMAL/LONG bucket (ratios 0.85/1.15 against the median interval) bound with one extra XOR. **The median is computed over the entire recording, including later beats, so this feature is non-causal.** A causal variant was not evaluated.
 
-## 🧠 1. Architectural Methodology
+## Results (group-isolated StratifiedGroupKFold, 5 folds, seed 42)
 
-The NeuroHDC pipeline transforms a noisy, 1-dimensional analog time-series signal into a static **D = 4096** binary signature using four distinct stages.
-
-### Stage 1 — Morphological Isolation & Pre-processing *(Software / MCU)*
-
-To prevent the **Positional Orthogonality Trap** inherent to HDC, every ECG heartbeat is surgically aligned before encoding.
-
-- **Baseline Correction:** A 0.5-second rolling-mean filter flattens low-frequency respiratory wander.
-- **Exact Temporal Anchoring:** During training/evaluation, beat centers are taken from each dataset's expert-labeled fiducial points (standard practice for these databases). In the deployed hardware path, where no ground truth exists, the R-peak is instead detected via the **Pan–Tompkins algorithm**, refined with a local ±20-sample search for the absolute maximum, and anchored at the exact center (**t = 128**) of a **256-sample window (~0.85 seconds)**.
-- **Smart AGC:** The window undergoes 98th-percentile soft-clipping to normalize amplitude variation without destroying subtle P/T-wave morphology.
-
-### Stage 2 — The Delta-Tokenizer *(Hardware Sparsity Engine)*
-
-Instead of feeding continuous arrays into a dense neural network layer, NeuroHDC tokenizes the signal based on its discrete derivative:
-
-```math
-\Delta v_t = v_t - v_{t-1}
-```
-
-If the derivative crosses a channel-specific threshold (θ꜀), a positive or negative spike (±1) is emitted; otherwise the tokenizer emits 0.
-
-**Sparsity definition:** sparsity is measured as the percentage of zero-valued tokens emitted by the tokenizer, across all channels, over the entire test set. Because the ECG is mostly an isoelectric flatline, the tokenizer outputs 0 for **>93%** of the cardiac cycle — physically putting the downstream HDC datapath into a deep sleep state.
-
-### Stage 3 — HDC Exact Temporal Binding *(Zero-MAC Encoding)*
-
-Active spikes are mapped into a 4096-bit Boolean space. In bipolar theory this involves multiplying i.i.d. random vectors representing Channel (C), Polarity (P), and Time index (T). In digital hardware, this reduces to parallel bitwise XOR:
-
-```math
-B_t = C_c \oplus P_p \oplus T_t
-```
-
-Bound vectors are accumulated over the 256-sample window and thresholded via a **Majority Rule** function to produce a single, static 4096-bit Query Hypervector (H_Q).
-
-### Stage 4 — Associative Memory & Inference
-
-Inference requires zero floating-point arithmetic. The Query Hypervector is compared against learned disease prototypes using Hamming Distance, computed via an XOR gate array and a Popcount adder tree:
-
-```math
-Distance_i = \text{Popcount}(H_Q \oplus H_{Class_i})
-```
-
-The class with the minimum Hamming distance determines the diagnosis.
-
-### Stage 5 — R-R Interval Rhythm Binding *(Optional Extension)*
-
-To address timing-based failure modes (see Sections 4–5), each beat's R-R interval relative to its record's local median is bucketed into `SHORT` / `NORMAL` / `LONG`, mapped to a fixed random hypervector, and bound (bipolar XOR) with the morphology hypervector before classification. This adds a single extra XOR stage in hardware — no additional multipliers.
-
----
-
-## 📊 2. Experimental Rigor: Patient-Isolated 5-Fold Cross-Validation
-
-All results below use **`StratifiedGroupKFold`**, splitting by patient/record rather than by individual beat — no beat from a given patient's recording appears in both the training and test set of any fold. This is a materially harder and more clinically meaningful protocol than the beat-level `StratifiedKFold` used in an earlier iteration of this project's evaluation, which was found to leak near-duplicate beats across the train/test boundary and produced inflated (and in two cases, literally 100%) accuracy figures. All numbers in this document are from the corrected, patient-isolated protocol.
-
-### MIT-BIH Arrhythmia Database (N = 100,023 beats, 48 patients)
-
-| Configuration | Strict Accuracy | Macro F1 | Binary Accuracy* |
+| Dataset | Strict Acc. (%) | Macro F1 (%) | Binary Acc. (%) |
 |---|---:|---:|---:|
-| Morphology-only | 66.43% ± 7.83% | 32.69% ± 7.41% | 77.48% ± 6.65% |
-| **+ R-R Rhythm Binding** | **70.99% ± 5.83%** | **35.77% ± 6.81%** | **78.40% ± 5.21%** |
+| MIT-BIH (rhythm ON) | 70.99 ± 5.83 | 35.77 ± 6.81 | 85.26 ± 5.69 |
+| PTB | 90.06 ± 1.04 | 56.24 ± 3.46 | 90.06 ± 1.04 |
+| European ST-T | 85.33 ± 1.92 | 78.48 ± 2.46 | 85.33 ± 1.92 |
+| PhysioNet 2017 (rhythm ON, Noisy excluded from F1) | 56.88 ± 0.62 | 45.05 ± 0.80 | 65.87 ± 0.67 |
 
-\* *Binary accuracy follows the AAMI EC57 convention of grouping LBBB/RBBB into the Normal superclass (Normal vs. ectopic/ischemic), rather than treating conduction-block morphology as an anomaly.*
+**Grouping:** MIT-BIH by record (records 201 and 202 are the same subject and may fall in different folds); PTB and ST-T by file/record name (not guaranteed subject-isolated); PhysioNet 2017 by recording (7,696 contributing records, 81,998 windows, at most 15 windows per record; one recording-level label is propagated to every window).
 
-### PTB, ST-T, and PhysioNet
+### Neural baselines (same folds and balancing)
 
-| Dataset | Strict Accuracy | Macro F1 | Binary Accuracy |
+| Model | Parameters | MACs/inference | Strict Acc. (%) | Macro F1 (%) |
+|---|---:|---:|---:|---:|
+| 1D-CNN | 265,637 | 619,136 | 72.15 ± 7.72 | 34.47 ± 8.73 |
+| 1D-ResNet | 964,773 | 44,238,336 | 76.00 ± 7.84 | 39.48 ± 11.10 |
+| NeuroHDC | none (class prototypes 2.5 KiB) | 0 | 70.99 ± 5.83 | 35.77 ± 6.81 |
+
+NeuroHDC's macro F1 lies between the two baselines; this is a comparison of computational complexity, not a claim of superiority. Wilcoxon signed-rank vs. CNN: W = 5.0, p = 0.625 (n = 5, descriptive only; five folds cannot establish equivalence). The CNN baselines are compact, not state-of-the-art. **No CNN/ResNet latency or energy is compared against NeuroHDC hardware**, since they were not deployed on comparable hardware.
+
+**Evaluation-protocol sensitivity:** the same CNN reached 98.66% accuracy under a random beat-level split versus 72.15 ± 7.72% under the group-isolated protocol.
+
+### Rhythm binding
+
+| Dataset | Rhythm OFF (F1) | Rhythm ON (F1) | Change |
 |---|---:|---:|---:|
-| PTB (Myocardial Infarction) | 90.06% ± 1.04% | 56.24% ± 3.46% | 90.06% ± 1.04% |
-| European ST-T (Ischemia) | 85.33% ± 1.92% | 78.48% ± 2.46% | 85.33% ± 1.92% |
-| PhysioNet 2017 (AFib, rhythm binding ON, Noisy class excluded from macro-F1) | 56.88% ± 0.62% | 45.05% ± 0.80% | 65.87% ± 0.67% |
+| MIT-BIH | 32.69 ± 7.41 | 35.77 ± 6.81 | +3.08 |
+| PhysioNet 2017 | 47.58 ± 0.50 | 45.05 ± 0.80 | -2.53 |
 
-**High fold-to-fold variance on MIT-BIH (±5.8–7.8 points) is a real, investigated property of this evaluation, not noise.** With only 48 patients split into 5 groups, pathology distribution across folds is highly uneven — for example, one fold's held-out set contains zero LBBB beats, and another contains roughly 60% of the entire dataset's PAC beats. This is a known and documented constraint of small-cohort inter-patient cross-validation, consistent with the inter-patient evaluation literature (e.g., de Chazal et al., 2004).
+MIT-BIH per-fold changes are mixed (+13.52, -8.96, +0.73, -4.00, +14.14).
 
-### 2.1 Efficiency Comparison vs. Self-Trained CNN (both patient-isolated)
+### Sparsification ablation (MIT-BIH, thresholds [0,0,0])
 
-The self-trained 1D-CNN baseline is now trained and evaluated under the **identical `StratifiedGroupKFold` patient-level splits** used for NeuroHDC — not the earlier beat-level `StratifiedKFold` protocol, which was found to inflate the CNN's accuracy from ~73% to a leaked 98.66% via the same beat-level leakage mechanism documented above.
+| Configuration | Zero tokens | Active tokens | Strict Acc. | Macro F1 |
+|---|---:|---:|---:|---:|
+| NeuroHDC | 96.491% | 3.509% | 70.99 ± 5.83 | 35.77 ± 6.81 |
+| No sparsification | 14.437% | 85.563% | 63.34 ± 12.37 | 31.85 ± 8.53 |
 
-| Architecture | Strict Accuracy (Avg ± SD) | Binary Accuracy (Avg ± SD) | Macro F1 (Avg ± SD) | Latency (ms) | Energy (μJ/Inf) |
-|---|---:|---:|---:|---:|---:|
-| **NeuroHDC (rhythm-enabled)** | 70.99% ± 5.83% | 78.40% ± 5.21% | **35.77% ± 6.81%** | 1.2 | 1.25 |
-| **1D-CNN (self-trained)** | 72.72% ± 8.11% | 82.59% ± 7.01% | **34.56% ± 8.17%** | 48.5 | 450.0 |
+Macro F1 change: -3.92 points; token-activity increase: 24.38x. This is a representation-level measurement, **not** a hardware power or efficiency result. LBBB recall stayed near zero in all five control folds (also the main weakness of all three models).
 
-**Under honest, identically-split evaluation, macro F1 is statistically comparable between the two architectures** (35.77% vs. 34.56%, well within each other's variance) — NeuroHDC's point estimate is marginally higher, though this should be read as a tie given the overlapping ±6.81/±8.17 spread, not a win either way. The CNN retains a modest edge in strict and binary accuracy. NeuroHDC achieves this comparable classification performance at **~40x lower latency and ~360x lower energy per inference**.
+### Dimension choice
 
-**Deployment context:** NeuroHDC's latency/energy figures are derived from a 100 MHz FPGA implementation; the CNN figures represent optimized inference on an ARM Cortex-M4F SoC — a deliberate cross-platform comparison reflecting each architecture's natural deployment target.
+A single-fold sweep run **before** the group-isolated protocol was adopted (D = 1024 / 2048 / 4096 / 8192: 88.42 / 92.15 / 95.85 / 96.02 validation accuracy) is not comparable with the five-fold results. D = 4096 is a selected architectural point, not globally optimal.
 
-### Latency Breakdown and Cycle Accounting
+## Memory accounting (D = 4096)
 
-The 1.2 ms NeuroHDC latency (120,000 cycles at 100 MHz) represents the full end-to-end system pipeline, not just core compute:
-
-- **Compute core (288 cycles):** hypervector encoding + associative memory (Hamming distance) comparison logic.
-- **System overhead (~119,712 cycles):** data buffering, AXI-bus data movement, windowing/tokenization, and non-parallelized control logic.
-
-We report the full system figure rather than the core-only figure because data-movement overhead is typically the dominant real-world cost and is often omitted in algorithm-only papers.
-
----
-
-## 🔬 3. Hyperparameter Sensitivity: Dimension Ablation
-
-To justify the chosen hypervector dimensionality, we swept D ∈ {1024, 2048, 4096, 8192} on a single validation fold (pre-dating the patient-isolated protocol adopted for final results):
-
-| Dimension (D) | Val-Accuracy (%) |
-|---|---:|
-| 1024 | 88.42 |
-| 2048 | 92.15 |
-| **4096 (chosen)** | **95.85** |
-| 8192 | 96.02 |
-
-- **D = 1024:** insufficient spatial capacity — loss of vector orthogonality ("crowding").
-- **D = 4096:** the Pareto-optimal point where spatial capacity matches ECG morphological complexity.
-- **D = 8192:** diminishing returns and a 2x hardware memory penalty for negligible accuracy gain.
-
-**Consistency note:** these values reflect a single-fold, pre-patient-isolation validation run used to expedite hyperparameter search, and should not be numerically compared to the patient-isolated 5-fold averages in Section 2.
-
----
-
-## ⚠️ 4. Rhythm Binding: A Tale of Two Failure Modes
-
-R-R interval rhythm binding (Stage 5) was tested as an architectural response to timing-based classification errors. It behaves very differently depending on the *nature* of the timing irregularity:
-
-### 4.1 MIT-BIH — Isolated Ectopic Beats: Rhythm Binding Helps, Inconsistently
-
-Rhythm binding improved MIT-BIH's aggregate macro F1 (32.69% → 35.77%), but the effect is fold-dependent, not uniform:
-
-| Fold | Rhythm OFF (F1) | Rhythm ON (F1) | Δ |
+| Memory | Vectors | Bits | Size |
 |---|---:|---:|---:|
-| 1 | 27.74% | 41.26% | +13.52 |
-| 2 | 32.62% | 23.66% | −8.96 |
-| 3 | 32.52% | 33.25% | +0.73 |
-| 4 | 46.15% | 42.15% | −4.00 |
-| 5 | 24.40% | 38.54% | +14.14 |
+| Channel (C) | 3 | 12,288 | 1.5 KiB |
+| Polarity/item (P) | 2 | 8,192 | 1.0 KiB |
+| Position (T) | 256 | 1,048,576 | 128.0 KiB |
+| **C/P/T lookup total** | 261 | **1,069,056** | **130.5 KiB** |
 
-This pattern correlates, at the extremes, with how much PAC (Premature Atrial Contraction) training data each fold's split leaves available: Fold 2 — the fold where rhythm binding hurts most — has only ~1,053 PAC training examples (the entire dataset's PAC beats are heavily clustered in a small number of patients, and Fold 2 happens to hold out the patients carrying the majority of them), while Fold 1 and Fold 5, where rhythm binding helps most, have over 2x that. The relationship is directionally consistent at the extremes but not clean across all five folds — a fair characterization is that PAC training-set size is *a contributing factor*, not a fully deterministic explanation, and per-patient morphology variability likely also plays a role.
+Class prototypes (software reference model): 2.5 KiB. The FPGA design stores C/P/T in BRAM; the ASIC flow did **not** map them as memory macros (0 memories, 0 memory bits).
 
-### 4.2 PhysioNet — Non-Stationary AFib: Rhythm Binding Does Not Help
+## Hardware
 
-Applying the same rhythm-binding mechanism to PhysioNet's AFib classification task did not improve performance — under a clean, consistent evaluation protocol (both configurations taxonomy-corrected, Noisy class excluded from macro-F1):
+**Verification.** cocotb RTL-vs-Python check with two directed golden heartbeat stimuli (one Normal, one anomalous), both giving **0-bit Hamming distance** (`TESTS=1 PASS=1 FAIL=0`). This is directed bit-exact agreement, not formal equivalence or exhaustive coverage.
 
-| Configuration | Macro F1 |
-|---|---:|
-| Rhythm OFF | **47.58% ± 0.50%** |
-| Rhythm ON | **45.05% ± 0.80%** |
-| Δ | −2.53 points |
+**FPGA (Zynq-7000 XC7Z010CLG225-3, Vivado 2022.2).** 5,972 LUTs (synthesis) / 5,321 (implemented), 8,750 / 8,760 flip-flops, 42 BRAM, **0 DSP**. Timing is met at an imposed 1 MHz constraint (slack +986.81 ns); this is a constraint, not Fmax. Vivado-estimated dynamic power 1.0 mW; total on-chip power 0.092 W (dominated by fixed device leakage). A zero-token simulation produced the output in 283 cycles (2.83 us at the simulation clock). No energy per inference is derived.
 
-The likely mechanism: MIT-BIH's PACs are isolated events — a single short R-R interval against an otherwise stable, predictable rhythm, which a simple SHORT/NORMAL/LONG bucketing captures well. Atrial fibrillation is clinically defined as *irregularly irregular* — there is no stable baseline rhythm for a fixed bucketing scheme to measure deviation against, so the discrete R-R tokenization likely adds noise rather than signal for this specific arrhythmia. Unlike the MIT-BIH result, this effect is consistent and low-variance across all 5 folds (rhythm-off SD 0.50 vs. rhythm-on SD 0.80), making it a more confidently reportable negative result than the MIT-BIH PAC finding.
+**ASIC (SkyWater 130 nm, `sky130_fd_sc_hd`, OpenLane run `RUN_2026.08.30_11.31.26`, `top_shde_wrapper`).** A **scaled 256-bit prototype** (WINDOW_SIZE = 32, CHUNK = 32, FOLDS = 8), **not** the D = 4096 configuration; no extrapolation to D = 4096 is made.
 
----
+| Metric | Result |
+|---|---|
+| Die / core area | 0.620261 mm² / 0.593454 mm² |
+| Synthesized / physical cells | 13,007 / 66,589 |
+| Clock constraint | 50 ns (20 MHz) |
+| Critical-path delay | 3.96 ns (not Fmax); WNS = TNS = 0 |
+| Typical internal / switching / leakage | 11.4 mW / 8.28 mW / 1.17e-7 W |
+| Typical total power | about 19.7 mW (tool-estimated, typical corner) |
+| TritonRoute, short, Magic, LVS, max-slew, max-cap violations | 0 |
+| Antenna violations | 50 pin, 44 net |
+| Max-fanout violations | 1 (33 vs. 32 loads) |
 
-## 📐 5. Evaluation Methodology Alignment with Literature Convention
+Power is OpenLane/OpenSTA typical-corner tool output, not measured silicon, and the switching-activity source is not fully established from the artifacts. The reported ASIC results cover the synthesized logic only (no memory macros). Clock/register power dominates, so algorithmic sparsity alone does not reduce it; clock gating is future work.
 
-To make comparisons against published baselines as fair as reasonably possible, two adjustments were made to the evaluation protocol, and are disclosed explicitly here rather than left implicit:
+## Data and ethics
 
-- **PhysioNet 2017 (Noisy class):** the official CinC 2017 challenge scoring excludes noisy *recordings* from the dataset prior to scoring. Our implementation instead excludes the `Noisy` class from the macro-F1 average while still training the model to recognize it as a class — a related but not identical evaluation choice. Any beat with true label Normal/AFib/Other that is *predicted* as Noisy still counts as an error for its true class. This should be described precisely as such in any manuscript, rather than claimed as an exact reproduction of the official protocol.
-- **MIT-BIH (AAMI EC57 grouping):** binary (Normal vs. anomaly) accuracy groups LBBB and RBBB into the Normal superclass, consistent with the AAMI EC57 convention used by most cited MIT-BIH literature, rather than treating conduction-block morphology as anomalous. The 5-class strict accuracy and macro F1 figures are unaffected by this and still report all five classes (Normal, PAC, PVC, LBBB, RBBB) separately.
+Public datasets only: MIT-BIH Arrhythmia, PTB Diagnostic ECG, European ST-T and PhysioNet/CinC 2017 (all from PhysioNet). No new human-subject data were collected, and no new institutional ethics approval was obtained for this secondary use of public data.
 
----
+## Known limitations
 
-## ⚡ 6. Hardware Validation
+- MIT-BIH, PTB and ST-T are not strictly subject-isolated (see grouping above); no external validation on a second dataset with the same labels.
+- Classification results use annotated or threshold-detected beat centers, not an end-to-end deployed detector.
+- Rhythm binding is non-causal (whole-recording median).
+- PhysioNet 2017 propagates recording-level labels to windows; metrics are not independent beat-level ground truth.
+- European ST-T beat selection uses an unseeded shuffle, so the exact beat subset is not bit-reproducible.
+- LBBB is poorly classified by all three models.
+- No Pan-Tompkins sensitivity analysis and no physical power measurement.
 
-### 6.1 RTL / Software Bit-True Verification
-
-- **Bit-true precision:** the Verilog implementation (`hw/rtl/`) was validated against the Python software encoder using **cocotb** RTL simulation across four independently seeded runs, showing 0-bit Hamming distance variance between hardware and software output on every run.
-
-### 6.2 FPGA Power Estimation
-
-- Evaluated via Xilinx Vivado post-synthesis power reports, targeting Zynq-7000 / Artix-7 fabric. **Dynamic core power is < 1.0 mW**; total on-chip power (dominated by fixed FPGA fabric static leakage, not architectural activity) is ~92 mW. The dynamic figure is the architecturally meaningful one; static leakage on FPGA reflects reconfigurable-fabric overhead that would not be present on a custom ASIC.
-
-### 6.3 ASIC Implementation & Activity-Annotated Power (SkyWater 130nm)
-
-The core datapath was synthesized, placed, and routed through the open-source OpenLane flow targeting the SkyWater 130nm PDK (`sky130_fd_sc_hd`), achieving a fully signed-off GDSII layout at 50 MHz with **zero setup/hold timing violations**.
-
-**Methodology:** to avoid severe routing congestion from a full 4096-bit register file, a 2-fold slice (D = 256) containing the complete Boolean datapath (Delta-Tokenizer logic, MUX structures, and parallel Popcount adder trees) was synthesized, placed, and routed. Dynamic power was validated via **activity-annotated Gate-Level Simulation (GLS)**: the synthesized `top_shde_wrapper` netlist was simulated against Sky130 standard cell primitives (`sky130_fd_sc_hd.v`) using `iverilog`, driven by real sparse ECG test vectors, producing a VCD from which OpenROAD (`read_power_activities`) mapped **297,300 physical pin activities** for high-fidelity power annotation — not default toggle-rate estimation.
-
-**Result:** total active power for the 2-fold slice was **5.85 mW**, with switching power minimized to **1.00 mW (17.1%)** due to the ECG data's inherent sparsity, while internal power — dominated by clock distribution and sequential flip-flop toggling, which occurs every cycle regardless of data sparsity — accounted for **4.85 mW (82.9%)** of the total.
-
-| Component | Power | Share |
-|---|---:|---:|
-| Internal (clock tree + FF toggling) | 4.85 mW | 82.9% |
-| Switching (data-dependent) | 1.00 mW | 17.1% |
-| **Total (2-fold slice)** | **5.85 mW** | 100% |
-
-**Methodological constraints (disclosed explicitly):**
-- **Full-architecture projection:** full-chip dynamic power is estimated at **93.6 mW**, via linear extrapolation (16x) of the routed 2-fold slice. This is an idealized lower bound -- it does not model the non-linear routing congestion or extended clock-tree buffering that a full 32-fold planar layout would require, and should not be read as a signed-off full-chip result.
-- **Macro leakage excluded:** the reported figures reflect logic and clock distribution only. Static leakage and dynamic read/write energy for the prototype SRAM storage macros were excluded from this synthesis run (no memory macro was compiled) and remain unmodeled.
-- **Resizer optimization disabled:** to prioritize flow completion for this power/area estimate, standard-cell resizer optimizations were disabled; the design carries max slew/fanout/capacitance warnings at the typical corner that a production-grade closure pass would need to address.
-- **Future work -- clock gating:** the 82.9% internal-power dominance identifies architectural clock gating (disabling the clock tree to inactive datapath blocks during sparse periods) as the highest-leverage optimization for a future iteration of this accelerator.
-- **Process node:** SkyWater 130nm is a legacy node; a modern low-power node (e.g., 22nm or below) would be expected to reduce these figures substantially, though this has not been evaluated.
-
-**ASIC energy per inference (computed self-consistently, at the ASIC's own 50 MHz clock -- not mixed with the FPGA's 100 MHz figures):** the same 120,000-cycle end-to-end pipeline takes 120,000 / 50 MHz = 2.4 ms at this clock rate. Combined with the 93.6 mW full-architecture projection above, this yields an estimated **224.6 uJ per inference** for the ASIC implementation -- noticeably less favorable than the FPGA's 1.25 uJ figure (Section 2.1), reflecting SkyWater 130nm being a legacy, higher-power-density node relative to the FPGA fabric at comparable activity levels. **The FPGA figure (Section 2.1) remains the primary efficiency comparison against the CNN baseline**, since it is the platform where both NeuroHDC and the deployment-target comparison are self-consistent; the ASIC figure is reported separately as a distinct, real physical measurement, not merged into the main comparison table, and carries the same scaling/SRAM caveats noted above.
-
----
-
-## 📁 7. Repository Structure & Reproducibility
+## Repository
 
 ```text
-NeuroHDC/
-│
-├── src/
-│   ├── data_loader.py
-│   ├── tokenizer.py
-│   ├── hdc_encoding.py
-│   └── associative_mem.py
-│
-├── notebooks/
-│   └── benchmark_notebook.ipynb
-│
-├── scripts/
-│   ├── 01_train_python.py        # NeuroHDC patient-isolated 5-fold CV training
-│   ├── 03_train_baselines.py     # Self-trained 1D-CNN baseline (patient-isolated, matches NeuroHDC split)
-│   └── 02_export_vectors.py      # Export binary test vectors for Verilog testbenches
-│
-├── hw/
-│   ├── rtl/                      # Synthesizable Verilog modules
-│   ├── tb/                       # Testbenches
-│   ├── vivado/                   # Bit-true verification framework
-│   └── asic/                     # OpenLane/OpenROAD physical implementation
-│       ├── tb_power_gls.v        # Gate-level simulation testbench (activity-annotated power)
-│       └── power_vcd_final.tcl   # OpenROAD read_power_activities script
-│
-├── Research Papers/               # Curated literature supporting the algorithmic baselines
-│
-├── *.pkl                          # Class prototype checkpoints (see below)
-│
-└── README.md
+src/        data_loader.py, tokenizer.py, hdc_encoding.py, associative_mem.py, config.py
+scripts/    01_train_python.py (NeuroHDC), 03_train_baselines.py (CNN), ResNet baseline, ablation script
+hw/rtl/     delta_tokenizer.v, hdc_bind_bundle.v, top_shde_core.v, top_shde_wrapper.v
+hw/tb/      cocotb testbench (test_shde_core.py, Makefile)
+hw/asic/    tb_power_gls.v, power_vcd_final.tcl
+notebooks/  benchmark_notebook.ipynb
 ```
 
-| Folder | Description |
-|---|---|
-| **src/** | Modular Python implementation: `data_loader.py`, `tokenizer.py`, `hdc_encoding.py`, `associative_mem.py`. |
-| **notebooks/** | End-to-end evaluation, visualization, and literature comparison. |
-| **scripts/** | Training pipelines for NeuroHDC and the self-trained baseline, plus Verilog test-vector export. |
-| **hw/** | Synthesizable RTL, cocotb verification (tb/), Vivado FPGA project (vivado/), and physical ASIC implementation (asic/). |
-| **Research Papers/** | Curated literature validating the algorithmic and baseline comparisons. |
-| **Model checkpoints (`*.pkl`)** | Serialized class prototypes generated by `scripts/01_train_python.py`, patient-isolated 5-fold CV (seed = 42). |
+Reproduce: `pip install -r requirements.txt`, place datasets under `Datasets/`, then `python scripts/01_train_python.py` (set `TARGET_DATASET`).
 
-### Reproducibility settings
-
-| Parameter | Value |
-|---|---|
-| Train/Test protocol | `StratifiedGroupKFold`, 5 folds, split by patient/record |
-| Random seed | 42 (deterministic per-fold RNG; reruns are bit-identical) |
-| Balancing cap | 12,000 Normal / 3,000 per anomaly class |
-| Hypervector dimension | 4096 |
-| Rhythm binding | Enabled for MIT-BIH; tested and found ineffective for PhysioNet (Sec. 4.2) |
-
----
-
-## 🚀 Quick Start
-
-```bash
-# 1. Clone repository
-git clone https://github.com/LohitMoharana/NeuroHDC.git
-cd NeuroHDC
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Run the self-trained CNN baseline
-python scripts/03_train_baselines.py
-
-# 4. Run NeuroHDC with patient-isolated 5-fold cross-validation
-python scripts/01_train_python.py
-
-# 5. Explore results interactively
-jupyter notebook notebooks/benchmark_notebook.ipynb
-```
-
----
-
-## 📚 8. References & Literature Baselines
-
-### 8.1 Core Architecture Foundations
-
-**Foundational HDC:**
-Kanerva, P. (2009). *[Hyperdimensional Computing: An Introduction to Computing in Distributed Representation with High-Dimensional Random Vectors.](https://redwood.berkeley.edu/wp-content/uploads/2018/01/kanerva2009hyperdimensional.pdf)* Cognitive Computation, 1(2), 139–159.
-
-**One-Shot Physiological Learning:**
-Rahimi, A., et al. (2016). *[Hyperdimensional Computing for Blind and One-Shot Classification of EEG Error-Related Potentials.](https://iis-people.ee.ethz.ch/~arahimi/papers/MONET17.pdf)* 50th Asilomar Conference on Signals, Systems and Computers.
-
-**In-Memory / Zero-MAC Hardware:**
-Karunaratne, G., et al. (2020). *[In-memory Hyperdimensional Computing.](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Karunaratne2020.pdf)* Nature Electronics, 3(6), 327–337.
-
-**Signal Pre-processing:**
-Pan, J., & Tompkins, W. J. (1985). *[A Real-Time QRS Detection Algorithm.](https://www.robots.ox.ac.uk/~gari/teaching/cdt/A3/readings/ECG/Pan+Tompkins.pdf)* IEEE Transactions on Biomedical Engineering, (3), 230–236.
-
-**Inter-Patient Evaluation Protocol:**
-de Chazal, P., O'Dwyer, M., & Reilly, R. B. (2004). *[Automatic classification of heartbeats using ECG morphology and heartbeat interval features.](https://ieeexplore.ieee.org/document/1306572)* IEEE Transactions on Biomedical Engineering, 51(7), 1196–1206. **Verified: 86.24% accuracy, inter-patient protocol** (the standard inter-patient reference point for MIT-BIH).
-
-### 8.2 Comparative Baseline Papers (by dataset) — Verified Figures
-
-All figures below were checked directly against primary sources (paper abstracts, arXiv, IEEE Xplore, or the official PhysioNet Challenge results page) rather than secondary citations.
-
-**A. MIT-BIH Arrhythmia Database**
-- de Chazal, P., O'Dwyer, M., & Reilly, R. B. (2004) — see Section 8.1. **86.24% accuracy, inter-patient.**
-- Kachuee, M., Fazeli, S., & Sarrafzadeh, M. (2018). *[ECG Heartbeat Classification: A Deep Transferable Representation.](https://arxiv.org/abs/1805.00794)* IEEE International Conference on Healthcare Informatics (ICHI). **Verified: 93.40% accuracy on MIT-BIH, intra-patient (random 80/20 beat-level split) — not directly comparable to inter-patient results without this caveat.**
-
-**B. PTB Diagnostic ECG Database (Myocardial Infarction)**
-- Sharma, L. N., et al. (2015). *[Multiscale Energy and Eigenspace Approach to Detection and Localization of Myocardial Infarction.](https://ieeexplore.ieee.org/document/7047810)* IEEE Transactions on Biomedical Engineering. **Verified: 96% accuracy / 93% sensitivity / 99% specificity, MI detection.**
-- Kachuee, M., Fazeli, S., & Sarrafzadeh, M. (2018) — see above. **Verified: 95.9% accuracy on PTB, intra-patient (80/20 split).**
-- Acharya, U. R., Fujita, H., Oh, S. L., Hagiwara, Y., Tan, J. H., & Adam, M. (2017). *[Application of Deep Convolutional Neural Network for Automated Detection of Myocardial Infarction Using ECG Signals.](https://www.researchgate.net/publication/317821702_Application_of_Deep_Convolutional_Neural_Network_for_Automated_Detection_of_Myocardial_Infarction_Using_ECG_Signals)* Information Sciences, 415, 190–198. **Verified from primary abstract: 95.22% accuracy (denoised ECG beats) / 93.53% accuracy (with noise, no denoising). No feature extraction or selection performed.**
-
-**C. European ST-T Database (Ischemia)**
-- Papaloukas, C., et al. (2002). *[An Ischemia Detection Method Based on Artificial Neural Networks.](https://www.cs.uoi.gr/~arly/papers/ischemia_neural.pdf)* **Verified from primary abstract: not a single "accuracy" figure — reports sensitivity (Se) and positive predictive accuracy (PPA) separately: Se 90% / PPA 89% (gross aggregate statistics) or Se 86% / PPA 87% (average aggregate statistics); beat-level classifier alone reports Se 90% / Sp 90%.**
-- *(Note: Pławiak (2018), previously listed here, has been removed — verification found it evaluates 17-class arrhythmia classification on MIT-BIH-derived data, not the European ST-T database, and is not a valid comparator for this task. No second verified ST-T comparator has been found yet; this is an open gap rather than filled with an unverified figure.)*
-
-**D. PhysioNet 2017 Challenge (AFib)**
-- Clifford, G. D., et al. (2017). *[AF Classification from a Short Single Lead ECG Recording: The PhysioNet/Computing in Cardiology Challenge 2017.](https://ieeexplore.ieee.org/document/8331486)* — official Challenge description.
-- Four teams tied for first place in the official Challenge at **F1 = 0.83** (verified directly from the [official PhysioNet Challenge results](https://moody-challenge.physionet.org/2017/results/)):
-  - Teijeiro, T., García, C. A., Félix, P., & Castro, D. (2017). *[Abductive Reasoning as the Basis to Reproduce Expert Criteria in ECG Atrial Fibrillation Identification.](https://arxiv.org/pdf/1802.05998)* Follow-up simplified model reached **F1 = 0.85**.
-  - Datta, S., Puri, C., Mukherjee, A., Banerjee, R., Dutta Choudhury, A., Ukil, A., Bandyopadhyay, S., Singh, R., Pal, A., & Khandelwal, S. (2017). *Identifying Normal, AF and Other Abnormal ECG Rhythms Using a Cascaded Binary Classifier.*
-  - Hong, S., Wu, M., Zhou, Y., Wang, Q., Shang, J., Li, H., & Xie, J. (2017). *ENCASE: An Ensemble Classifier for ECG Classification Using Expert Features and Deep Neural Networks.*
-  - Zabihi, M., Bahrami Rad, A., Katsaggelos, A. K., Kiranyaz, S., Narkilahti, S., & Gabbouj, M. (2017). *Detection of Atrial Fibrillation in ECG Signals Using an Ensemble of Random Forest Classifiers.*
----
-
-## 🎯 Key Contributions
-
-- Zero-MAC Edge-AI ECG classifier using Spiking-Hyperdimensional Computing
-- Event-driven sparse computation (>93% token sparsity)
-- Boolean-only inference — no floating-point arithmetic
-- **Strict patient-isolated (inter-patient) 5-fold cross-validation** across four clinical datasets — no beat-level leakage between train and test
-- Self-trained CNN baseline, re-validated under the identical patient-isolated protocol — revealing that ~26 points of its earlier apparent accuracy advantage were a beat-level leakage artifact, not genuine generalization
-- R-R interval permutation-binding architectural extension, with an honest, mechanistically-explained account of where it helps (isolated ectopic beats) and where it doesn't (non-stationary AFib, confirmed via a clean same-protocol ablation)
-- Data-backed failure analysis (confusion matrices + per-fold class distribution) explaining observed variance rather than treating it as unexplained noise
-- FPGA-ready Verilog implementation with bit-true software/hardware verification
-- Sub-milliwatt dynamic power, audited down to cycle-level latency accounting
-
----
-
-## 📜 License
-
-Distributed under the **MIT License**. Developed for robust, sub-milliwatt cardiac diagnostics at the extreme edge.
-
-## ⭐ Citation
-
-If you use NeuroHDC in your research, please cite this repository:
+## Citation
 
 ```bibtex
 @software{NeuroHDC2026,
   author = {Lohit Moharana},
-  title = {NeuroHDC: High-Efficiency Edge-AI ECG Classification using Spiking-Hyperdimensional Computing},
-  year = {2026},
-  url = {https://github.com/LohitMoharana/NeuroHDC}
+  title  = {NeuroHDC: A Zero-MAC Event-Sparse Hyperdimensional Architecture for ECG Classification},
+  year   = {2026},
+  url    = {https://github.com/LohitMoharana/NeuroHDC}
 }
 ```
 
-<p align="center">
-
-### ⚡ Ultra-Low Power • Zero MAC • FPGA Ready • Edge AI for Wearable Healthcare
-
-⭐ Star the repository if you find this work useful!
-
-</p>
+License: MIT.
