@@ -1,0 +1,40 @@
+[
+ {
+  "grouping": "file name (as submitted)",
+  "acc": "90.06\u00b11.04",
+  "f1": "56.24\u00b13.46",
+  "fold_f1": [
+   59.21,
+   60.67,
+   53.04,
+   51.64,
+   56.63
+  ],
+  "patients_in_both_train_and_test_per_fold": [
+   60,
+   61,
+   60,
+   53,
+   59
+  ]
+ },
+ {
+  "grouping": "patient (PhysioNet RECORDS)",
+  "acc": "90.09\u00b12.15",
+  "f1": "51.02\u00b12.25",
+  "fold_f1": [
+   55.42,
+   49.75,
+   49.75,
+   50.74,
+   49.44
+  ],
+  "patients_in_both_train_and_test_per_fold": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ }
+]

@@ -1,0 +1,27 @@
+     -.--ns INFO     gpi                                ..mbed\gpi_embed.cpp:94   in _embed_init_python              Using Python 3.11.9 interpreter at C:\Users\lohit\AppData\Local\Programs\Python\Python311\python.exe
+     -.--ns INFO     gpi                                ..\gpi\GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (devel)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794582531
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from C:\Users\lohit\AppData\Local\Programs\Python\Python311\Lib\site-packages\cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_top_classifier.test_top (1/1)
+     0.00ns INFO     cocotb.top_shde_classifier         QUERY_REV=1
+119310.00ns INFO     cocotb.top_shde_classifier         beat 0: static_hv_reg vs golden HV -> direct (char0=MSB)
+119310.00ns INFO     cocotb.top_shde_classifier         beat 0: RTL class=PVC dist=1933 | Python class=Normal dist=1684 | all python dists={'PVC': 1991, 'PAC': 2093, 'Normal': 1684, 'LBBB': 2082, 'RBBB': 1923}
+119310.00ns WARNING  cocotb.Test test_top.test_top      RTL/Python mismatch (QUERY_REV=1, hv orientation direct (char0=MSB))
+                                                        assert ('PVC' == 'Normal')
+                                                        Traceback (most recent call last):
+                                                          File "D:\Projects\Personal\NeuroHDC\.claude\worktrees\neurohdc-revision-prep-da47d4\revision\tb\test_top_classifier.py", line 85, in test_top
+                                                            assert LABELS[idx] == py_lab and md == dists[py_lab], \
+                                                        AssertionError: RTL/Python mismatch (QUERY_REV=1, hv orientation direct (char0=MSB))
+                                                        assert ('PVC' == 'Normal')
+119310.00ns WARNING  cocotb.regression                  test_top_classifier.test_top failed
+119310.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_top_classifier.test_top   FAIL      119310.00           1.27      94001.92  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0             119310.00           1.27      94001.92  **
+                                                        **************************************************************************************
+RESULT QUERY_REV=1: 1 passed, 1 failed

@@ -1,0 +1,7 @@
+[stt schedule f3] cand 0 {} inner macroF1 75.03 9s
+[stt schedule f3] cand 1 {'lr0': 5} inner macroF1 74.53 18s
+[stt schedule f3] cand 2 {'lr0': 30} inner macroF1 75.08 26s
+[stt schedule f3] cand 3 {'epochs': 10} inner macroF1 70.42 30s
+[stt schedule f3] cand 4 {'epochs': 60} inner macroF1 76.43 48s
+[stt schedule f3] cand 5 {'epochs': 0} inner macroF1 57.25 48s
+[stt schedule f3] SELECTED cand 4 {'epochs': 60} -> outer acc 81.91 macroF1 72.48

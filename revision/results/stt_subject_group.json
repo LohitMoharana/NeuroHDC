@@ -1,0 +1,59 @@
+[
+ {
+  "grouping": "record (as submitted)",
+  "acc": "85.21\u00b12.51",
+  "f1": "78.51\u00b13.56",
+  "fold_f1": [
+   83.88,
+   79.01,
+   78.17,
+   72.66,
+   78.81
+  ],
+  "signature_groups_in_both_train_and_test_per_fold": [
+   4,
+   2,
+   4,
+   4,
+   2
+  ]
+ },
+ {
+  "grouping": "OFFICIAL subject (PhysioNet page)",
+  "acc": "83.95\u00b13.43",
+  "f1": "77.04\u00b14.21",
+  "fold_f1": [
+   80.21,
+   81.09,
+   71.02,
+   80.01,
+   72.89
+  ],
+  "signature_groups_in_both_train_and_test_per_fold": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "grouping": "clinical-header signature (proxy)",
+  "acc": "82.50\u00b16.10",
+  "f1": "76.16\u00b16.67",
+  "fold_f1": [
+   83.07,
+   81.18,
+   73.5,
+   78.57,
+   64.48
+  ],
+  "signature_groups_in_both_train_and_test_per_fold": [
+   0,
+   1,
+   0,
+   1,
+   0
+  ]
+ }
+]

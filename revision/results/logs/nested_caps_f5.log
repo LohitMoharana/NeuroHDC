@@ -1,0 +1,7 @@
+[caps f4] cand 0 {} inner macroF1 37.46 (folds [35.85, 42.39, 34.14]) 199s
+[caps f4] cand 1 {'cap_n': 3000} inner macroF1 32.99 (folds [33.56, 30.51, 34.89]) 342s
+[caps f4] cand 2 {'cap_n': 6000, 'cap_a': 6000} inner macroF1 37.19 (folds [39.6, 37.69, 34.28]) 497s
+[caps f4] cand 3 {'cap_a': 6000} inner macroF1 36.05 (folds [33.23, 40.27, 34.66]) 694s
+[caps f4] cand 4 {'cap_n': 12000, 'cap_a': 12000} inner macroF1 36.05 (folds [33.23, 40.27, 34.66]) 927s
+[caps f4] cand 5 {'cap_n': 1500} inner macroF1 31.95 (folds [33.5, 34.43, 27.93]) 1022s
+[caps f4] SELECTED cand 0 {} -> outer acc 70.01 macroF1 38.54

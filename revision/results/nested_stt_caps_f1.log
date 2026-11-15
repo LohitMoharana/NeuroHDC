@@ -1,0 +1,7 @@
+[stt caps f0] cand 0 {} inner macroF1 76.26 10s
+[stt caps f0] cand 1 {'cap_n': 3000} inner macroF1 75.64 19s
+[stt caps f0] cand 2 {'cap_n': 6000, 'cap_a': 6000} inner macroF1 76.26 28s
+[stt caps f0] cand 3 {'cap_a': 6000} inner macroF1 76.26 38s
+[stt caps f0] cand 4 {'cap_n': 12000, 'cap_a': 12000} inner macroF1 76.26 48s
+[stt caps f0] cand 5 {'cap_n': 1500} inner macroF1 72.57 54s
+[stt caps f0] SELECTED cand 0 {} -> outer acc 89.47 macroF1 83.88

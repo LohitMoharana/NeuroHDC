@@ -1,0 +1,7 @@
+train 50992 test 49686
+seed 42: acc 71.60 macroF1 36.69 | Normal sens 73.4 ppv 96.3 SVEB sens 14.8 ppv 4.0 VEB sens 87.4 ppv 39.1 F sens 9.8 ppv 1.9
+seed 43: acc 75.16 macroF1 35.51 | Normal sens 77.4 ppv 94.8 SVEB sens 8.4 ppv 4.4 VEB sens 90.8 ppv 34.6 F sens 2.3 ppv 0.6
+seed 44: acc 79.89 macroF1 41.10 | Normal sens 83.4 ppv 94.8 SVEB sens 9.6 ppv 3.9 VEB sens 80.3 ppv 53.4 F sens 14.2 ppv 3.8
+seed 45: acc 72.90 macroF1 35.98 | Normal sens 74.7 ppv 97.1 SVEB sens 15.1 ppv 4.5 VEB sens 89.2 ppv 32.3 F sens 6.7 ppv 4.0
+seed 46: acc 85.34 macroF1 43.86 | Normal sens 89.5 ppv 94.8 SVEB sens 10.6 ppv 6.8 VEB sens 79.5 ppv 63.3 F sens 8.2 ppv 3.1
+FINAL {'model': '1D-CNN (paper baseline)', 'seeds': [42, 43, 44, 45, 46], 'accuracy': '76.98+-5.04', 'macro_f1': '38.63+-3.28', 'Normal_sensitivity': '79.68+-6.01', 'Normal_ppv': '95.55+-0.97', 'Normal_f1': '86.75+-3.23', 'Normal_fpr': '30.60+-8.52', 'SVEB_sensitivity': '11.68+-2.75', 'SVEB_ppv': '4.73+-1.07', 'SVEB_f1': '6.58+-0.99', 'SVEB_fpr': '9.48+-3.03', 'VEB_sensitivity': '85.43+-4.66', 'VEB_ppv': '44.57+-11.90', 'VEB_f1': '57.26+-8.71', 'VEB_fpr': '8.45+-3.83', 'F_sensitivity': '8.25+-3.87', 'F_ppv': '2.68+-1.29', 'F_f1': '3.92+-1.76', 'F_fpr': '2.66+-0.96'}

@@ -1,0 +1,8 @@
+[causal] beats=100023 bucket% = {'LONG': np.float64(11.33), 'NORMAL': np.float64(77.2), 'SHORT': np.float64(11.47)}
+[causal] fold 1: acc 72.34  macroF1 41.58  (44s)
+[causal] fold 2: acc 64.47  macroF1 24.39  (82s)
+[causal] fold 3: acc 67.25  macroF1 35.12  (123s)
+[causal] fold 4: acc 82.45  macroF1 49.14  (164s)
+[causal] fold 5: acc 70.33  macroF1 38.54  (205s)
+[causal] FINAL acc 71.37±6.15  macroF1 37.75±8.13
+[causal] pooled per-class F1: {np.str_('LBBB'): 1.06, np.str_('Normal'): 84.59, np.str_('PAC'): 13.6, np.str_('PVC'): 48.49, np.str_('RBBB'): 50.1}

@@ -1,0 +1,7 @@
+[PN rhythm f2] cand 0 {} inner macroF1 43.51 87s
+[PN rhythm f2] cand 1 {'rhythm': False} inner macroF1 46.71 169s
+[PN rhythm f2] cand 2 {'short': 0.9, 'long': 1.1} inner macroF1 45.11 254s
+[PN rhythm f2] cand 3 {'short': 0.8, 'long': 1.2} inner macroF1 43.47 339s
+[PN rhythm f2] cand 4 {'short': 0.75, 'long': 1.25} inner macroF1 43.77 425s
+[PN rhythm f2] cand 5 {'short': 0.9, 'long': 1.2} inner macroF1 43.90 506s
+[PN rhythm f2] SELECTED cand 1 {'rhythm': False} -> outer acc 59.38 macroF1 47.56

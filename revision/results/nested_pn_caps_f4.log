@@ -1,0 +1,7 @@
+[PN caps f3] cand 0 {} inner macroF1 44.88 98s
+[PN caps f3] cand 1 {'cap_n': 3000} inner macroF1 42.67 149s
+[PN caps f3] cand 2 {'cap_n': 6000, 'cap_a': 6000} inner macroF1 43.87 235s
+[PN caps f3] cand 3 {'cap_a': 6000} inner macroF1 46.08 349s
+[PN caps f3] cand 4 {'cap_n': 12000, 'cap_a': 12000} inner macroF1 45.40 493s
+[PN caps f3] cand 5 {'cap_n': 1500} inner macroF1 38.06 536s
+[PN caps f3] SELECTED cand 3 {'cap_a': 6000} -> outer acc 53.05 macroF1 45.23

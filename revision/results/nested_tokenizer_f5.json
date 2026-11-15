@@ -1,0 +1,34 @@
+{
+ "family": "tokenizer",
+ "outer_fold": 5,
+ "candidates": [
+  {},
+  {
+   "tok": "t_lo"
+  },
+  {
+   "tok": "t_hi"
+  },
+  {
+   "tok": "t_mid"
+  },
+  {
+   "tok": "t_wide"
+  }
+ ],
+ "inner_scores": [
+  37.460169600143274,
+  41.87983692802982,
+  28.675596760320563,
+  33.87292909680961,
+  33.02492193616621
+ ],
+ "selected": 1,
+ "selected_setting": {
+  "tok": "t_lo"
+ },
+ "outer_acc": 76.20432917509,
+ "outer_macro_f1": 41.684992069082476,
+ "inner_train_records": 37,
+ "n_test": 20281
+}

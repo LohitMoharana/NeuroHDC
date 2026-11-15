@@ -1,0 +1,8 @@
+[off] beats=100023 bucket% = {}
+[off] fold 1: acc 62.18  macroF1 27.74  (42s)
+[off] fold 2: acc 65.01  macroF1 32.62  (79s)
+[off] fold 3: acc 64.92  macroF1 32.52  (119s)
+[off] fold 4: acc 81.38  macroF1 46.15  (160s)
+[off] fold 5: acc 58.67  macroF1 24.40  (199s)
+[off] FINAL acc 66.43±7.83  macroF1 32.69±7.41
+[off] pooled per-class F1: {np.str_('LBBB'): 0.08, np.str_('Normal'): 84.06, np.str_('PAC'): 15.18, np.str_('PVC'): 33.74, np.str_('RBBB'): 29.16}

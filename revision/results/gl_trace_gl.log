@@ -1,0 +1,20 @@
+     -.--ns INFO     gpi                                ..mbed\gpi_embed.cpp:94   in _embed_init_python              Using Python 3.11.9 interpreter at C:\Users\lohit\AppData\Local\Programs\Python\Python311\python.exe
+     -.--ns INFO     gpi                                ..\gpi\GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (devel)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794637306
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from C:\Users\lohit\AppData\Local\Programs\Python\Python311\Lib\site-packages\cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_gl_trace.trace (1/1)
+112490.00ns WARNING  py.warnings                        D:\Projects\Personal\NeuroHDC\.claude\worktrees\neurohdc-revision-prep-da47d4\revision\asic\tb\test_gl_trace.py:52: ResourceWarning: unclosed file <_io.TextIOWrapper name='D:\\Projects\\Personal\\NeuroHDC\\.claude\\worktrees\\neurohdc-revision-prep-da47d4\\revision\\results\\gl_trace_gl.json' mode='w' encoding='cp1252'>
+                                                          json.dump(dict(n_win=N_WIN, class_results=cls, hv_words=hv), open(os.environ["TRACE_OUT"], "w"))
+112490.00ns INFO     cocotb.top_shde_wrapper_cls        class results 12, hv words 96
+112490.00ns INFO     cocotb.regression                  test_gl_trace.trace passed
+112490.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_gl_trace.trace            PASS      112490.00          11.49       9788.25  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0             112490.00          11.50       9784.84  **
+                                                        **************************************************************************************
+RESULT gl: 1 passed, 0 failed

@@ -1,0 +1,7 @@
+[schedule f2] cand 0 {} inner macroF1 32.59 (folds [31.57, 31.49, 34.72]) 188s
+[schedule f2] cand 1 {'lr0': 5} inner macroF1 31.87 (folds [32.94, 31.23, 31.43]) 339s
+[schedule f2] cand 2 {'lr0': 30} inner macroF1 32.29 (folds [31.0, 30.48, 35.4]) 496s
+[schedule f2] cand 3 {'epochs': 10} inner macroF1 31.26 (folds [32.49, 31.36, 29.92]) 581s
+[schedule f2] cand 4 {'epochs': 60} inner macroF1 31.09 (folds [30.43, 31.68, 31.15]) 990s
+[schedule f2] cand 5 {'epochs': 0} inner macroF1 31.49 (folds [32.07, 29.51, 32.89]) 1001s
+[schedule f2] SELECTED cand 0 {} -> outer acc 66.67 macroF1 33.25

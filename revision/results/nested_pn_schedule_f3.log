@@ -1,0 +1,7 @@
+[PN schedule f2] cand 0 {} inner macroF1 43.51 96s
+[PN schedule f2] cand 1 {'lr0': 5} inner macroF1 39.46 191s
+[PN schedule f2] cand 2 {'lr0': 30} inner macroF1 44.63 287s
+[PN schedule f2] cand 3 {'epochs': 10} inner macroF1 35.64 325s
+[PN schedule f2] cand 4 {'epochs': 60} inner macroF1 43.82 503s
+[PN schedule f2] cand 5 {'epochs': 0} inner macroF1 37.31 512s
+[PN schedule f2] SELECTED cand 2 {'lr0': 30} -> outer acc 58.37 macroF1 46.39

@@ -1,0 +1,57 @@
+101 1863
+106 2027
+108 1763
+109 2531
+112 2538
+114 1879
+115 1952
+116 2411
+118 2278
+119 1987
+122 2475
+124 1618
+201 1963
+203 2976
+205 2655
+207 1860
+208 2952
+209 3004
+215 3362
+220 2047
+223 2604
+230 2256
+100 2272
+103 2083
+105 2567
+111 2124
+113 1794
+117 1534
+121 1862
+123 1518
+200 2600
+202 2135
+210 2649
+212 2747
+213 3250
+214 2259
+219 2154
+221 2427
+222 2482
+228 2053
+231 1570
+232 1780
+233 3078
+234 2753
+DS1 {'Normal': 45854, 'SVEB': 944, 'VEB': 3788, 'F': 415} DS2 {'Normal': 44245, 'SVEB': 1837, 'VEB': 3221, 'F': 388}
+== III (FS3, lead A)
+  DS1 record-wise CV: acc 54.6  sens Normal 57.6 SVEB 12.0 VEB 33.4 F 13.0
+  DS2: acc 69.2 macroF1 41.3 sens Normal 70.4 SVEB 59.5 VEB 66.3 F 12.6
+  DS2 AAMI: {'VEB': {'sens': np.float64(66.3), 'ppv': np.float64(56.6), 'fpr': np.float64(3.6)}, 'SVEB': {'sens': np.float64(59.5), 'ppv': np.float64(8.6), 'fpr': np.float64(24.2)}}
+== VII (FS7, lead B)
+  DS1 record-wise CV: acc 45.7  sens Normal 47.6 SVEB 21.8 VEB 30.4 F 26.7
+  DS2: acc 37.5 macroF1 21.2 sens Normal 39.0 SVEB 7.0 VEB 28.2 F 89.7
+  DS2 AAMI: {'VEB': {'sens': np.float64(28.2), 'ppv': np.float64(9.2), 'fpr': np.float64(19.5)}, 'SVEB': {'sens': np.float64(7.0), 'ppv': np.float64(0.8), 'fpr': np.float64(33.2)}}
+== XI (FS3+FS7, two leads)
+  DS1 record-wise CV: acc 53.5  sens Normal 56.5 SVEB 20.0 VEB 29.3 F 18.6
+  DS2: acc 56.8 macroF1 37.9 sens Normal 58.9 SVEB 12.7 VEB 51.0 F 70.9
+  DS2 AAMI: {'VEB': {'sens': np.float64(51.0), 'ppv': np.float64(33.5), 'fpr': np.float64(7.1)}, 'SVEB': {'sens': np.float64(12.7), 'ppv': np.float64(1.5), 'fpr': np.float64(32.1)}}

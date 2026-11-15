@@ -1,0 +1,6 @@
+[tokenizer f1] cand 0 {} inner macroF1 42.84 (folds [48.99, 38.74, 40.8]) 205s
+[tokenizer f1] cand 1 {'tok': 't_lo'} inner macroF1 41.71 (folds [48.16, 32.57, 44.4]) 424s
+[tokenizer f1] cand 2 {'tok': 't_hi'} inner macroF1 39.40 (folds [44.81, 37.89, 35.5]) 609s
+[tokenizer f1] cand 3 {'tok': 't_mid'} inner macroF1 43.20 (folds [47.19, 38.67, 43.72]) 827s
+[tokenizer f1] cand 4 {'tok': 't_wide'} inner macroF1 36.59 (folds [37.11, 36.45, 36.21]) 992s
+[tokenizer f1] SELECTED cand 3 {'tok': 't_mid'} -> outer acc 65.84 macroF1 28.18

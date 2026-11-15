@@ -1,0 +1,15 @@
+cache/
+__pycache__/
+tb/build*/
+asic/tb/build/
+vivado/out_*/*.dcp
+vivado/out_*/.Xil/
+vivado/out_*/*.jou
+vivado/out_*/*.pb
+vivado/out_*/*.rpx
+
+asic/tb/build_gl/
+asic/tb/build_rtl/
+asic/tb/build1024/
+asic/tb/build2048/
+asic/tb/build4096/

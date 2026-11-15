@@ -1,0 +1,7 @@
+train 50992 {'Normal': 45846, 'SVEB': 944, 'VEB': 3788, 'F': 414} test 49686 {'Normal': 44241, 'SVEB': 1837, 'VEB': 3220, 'F': 388}
+seed 42: acc 80.59 macroF1 36.91 | Normal sens 84.8 ppv 94.4 SVEB sens 11.5 ppv 16.5 VEB sens 71.5 ppv 32.2 F sens 0.8 ppv 0.2
+seed 43: acc 79.47 macroF1 42.23 | Normal sens 81.6 ppv 95.6 SVEB sens 46.1 ppv 21.7 VEB sens 78.9 ppv 37.1 F sens 1.8 ppv 0.6
+seed 44: acc 74.85 macroF1 29.78 | Normal sens 78.8 ppv 95.7 SVEB sens 0.0 ppv 0.0 VEB sens 72.5 ppv 20.9 F sens 0.8 ppv 0.2
+seed 45: acc 76.25 macroF1 30.91 | Normal sens 80.1 ppv 95.9 SVEB sens 0.1 ppv 0.3 VEB sens 75.8 ppv 23.6 F sens 0.8 ppv 0.1
+seed 46: acc 81.90 macroF1 37.71 | Normal sens 86.2 ppv 94.5 SVEB sens 10.8 ppv 21.8 VEB sens 72.8 ppv 33.4 F sens 1.0 ppv 0.3
+FINAL {'rhythm': 'off', 'D': 4096, 'seeds': [42, 43, 44, 45, 46], 'train_counts': {'Normal': 45846, 'SVEB': 944, 'VEB': 3788, 'F': 414}, 'test_counts': {'Normal': 44241, 'SVEB': 1837, 'VEB': 3220, 'F': 388}, 'accuracy': '78.61+-2.65', 'macro_f1': '35.51+-4.60', 'Normal_sensitivity': '82.31+-2.81', 'Normal_ppv': '95.21+-0.65', 'Normal_f1': '88.25+-1.35', 'Normal_fpr': '33.80+-5.96', 'SVEB_sensitivity': '13.71+-16.95', 'SVEB_ppv': '12.06+-9.91', 'SVEB_f1': '11.53+-10.95', 'SVEB_fpr': '2.33+-2.10', 'VEB_sensitivity': '74.27+-2.70', 'VEB_ppv': '29.44+-6.15', 'VEB_f1': '41.82+-6.62', 'VEB_fpr': '13.15+-4.03', 'F_sensitivity': '1.03+-0.40', 'F_ppv': '0.28+-0.16', 'F_f1': '0.44+-0.23', 'F_fpr': '3.17+-0.60'}

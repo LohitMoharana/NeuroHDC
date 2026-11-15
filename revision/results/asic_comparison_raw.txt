@@ -1,0 +1,102 @@
+===== baseline_rerun RUN_REV_BASE
+  flow_status: flow completed
+  total_runtime: 0h11m39s0ms
+  synth_cell_count: 13007
+  DFF: 12
+  XOR: 1124
+  XNOR: 384
+  MUX: 1831
+  TotalCells: 66589
+  DIEAREA_mm^2: 0.6202614026250001
+  CoreArea_um^2: 593454.1696
+  Final_Util: -1
+  wire_length: 687881
+  tritonRoute_violations: 0
+  Magic_violations: 0
+  pin_antenna_violations: 50
+  net_antenna_violations: 44
+  lvs_total_errors: 0
+  klayout_violations: -1
+  wns: 0.0
+  tns: 0.0
+  spef_wns: 0.0
+  critical_path_ns: 3.960000000000001
+  power_typical_internal_uW: 0.0114
+  power_typical_switching_uW: 0.00828
+  power_typical_leakage_uW: 1.17e-07
+  CLOCK_PERIOD: 50.0
+  total_power_mW(typ): 19.68 (csv units are W)
+  STA: tns 0.00 | wns 0.00 | worst slack 37.05 | worst slack 0.31
+  checks: ['max slew violation count 0', 'max fanout violation count 1', 'max cap violation count 0']
+  DRC rpt: top_shde_wrapper | ---------------------------------------- | [INFO]: COUNT: 0 | [INFO]: Should be divided by 3 or 4
+  LVS: ['Total errors = 0'] 
+  antenna violators file lines: 50
+  rcx power: ['Total                  1.14e-02   8.28e-03   1.17e-07   1.97e-02 100.0%']
+===== classifier RUN_REV_CLS
+  flow_status: flow completed
+  total_runtime: 0h13m49s0ms
+  synth_cell_count: 14969
+  DFF: 14
+  XOR: 1527
+  XNOR: 576
+  MUX: 1950
+  TotalCells: 75573
+  DIEAREA_mm^2: 0.676666708625
+  CoreArea_um^2: 648862.3104000001
+  Final_Util: -1
+  wire_length: 749472
+  tritonRoute_violations: 0
+  Magic_violations: 0
+  pin_antenna_violations: 65
+  net_antenna_violations: 56
+  lvs_total_errors: 0
+  klayout_violations: -1
+  wns: 0.0
+  tns: 0.0
+  spef_wns: 0.0
+  critical_path_ns: 5.16
+  power_typical_internal_uW: 0.0145
+  power_typical_switching_uW: 0.0119
+  power_typical_leakage_uW: 1.38e-07
+  CLOCK_PERIOD: 50.0
+  total_power_mW(typ): 26.4 (csv units are W)
+  STA: tns 0.00 | wns 0.00 | worst slack 35.92 | worst slack 0.30
+  checks: ['max slew violation count 21', 'max fanout violation count 1', 'max cap violation count 0']
+  DRC rpt: top_shde_wrapper_cls | ---------------------------------------- | [INFO]: COUNT: 0 | [INFO]: Should be divided by 3 or 4
+  LVS: ['Total errors = 0'] 
+  antenna violators file lines: 65
+  rcx power: ['Total                  1.45e-02   1.19e-02   1.38e-07   2.64e-02 100.0%']
+===== prev_2026.08.30 RUN_2026.08.30_11.31.26
+  flow_status: flow completed
+  total_runtime: 0h9m50s0ms
+  synth_cell_count: 13007
+  DFF: 12
+  XOR: 1124
+  XNOR: 384
+  MUX: 1831
+  TotalCells: 66589
+  DIEAREA_mm^2: 0.6202614026250001
+  CoreArea_um^2: 593454.1696
+  Final_Util: -1
+  wire_length: 687881
+  tritonRoute_violations: 0
+  Magic_violations: 0
+  pin_antenna_violations: 50
+  net_antenna_violations: 44
+  lvs_total_errors: 0
+  klayout_violations: -1
+  wns: 0.0
+  tns: 0.0
+  spef_wns: 0.0
+  critical_path_ns: 3.960000000000001
+  power_typical_internal_uW: 0.0114
+  power_typical_switching_uW: 0.00828
+  power_typical_leakage_uW: 1.17e-07
+  CLOCK_PERIOD: 50.0
+  total_power_mW(typ): 19.68 (csv units are W)
+  STA: tns 0.00 | wns 0.00 | worst slack 37.05 | worst slack 0.31
+  checks: ['max slew violation count 0', 'max fanout violation count 1', 'max cap violation count 0']
+  DRC rpt: top_shde_wrapper | ---------------------------------------- | [INFO]: COUNT: 0 | [INFO]: Should be divided by 3 or 4
+  LVS: ['Total errors = 0'] 
+  antenna violators file lines: 50
+  rcx power: ['Total                  1.14e-02   8.28e-03   1.17e-07   1.97e-02 100.0%']

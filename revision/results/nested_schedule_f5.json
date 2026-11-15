@@ -1,0 +1,38 @@
+{
+ "family": "schedule",
+ "outer_fold": 5,
+ "candidates": [
+  {},
+  {
+   "lr0": 5
+  },
+  {
+   "lr0": 30
+  },
+  {
+   "epochs": 10
+  },
+  {
+   "epochs": 60
+  },
+  {
+   "epochs": 0
+  }
+ ],
+ "inner_scores": [
+  37.460169600143274,
+  38.30930416016815,
+  38.79432564985576,
+  34.25980977269402,
+  39.13787656721624,
+  27.439217755463233
+ ],
+ "selected": 4,
+ "selected_setting": {
+  "epochs": 60
+ },
+ "outer_acc": 72.01321433854346,
+ "outer_macro_f1": 37.47346593015287,
+ "inner_train_records": 37,
+ "n_test": 20281
+}

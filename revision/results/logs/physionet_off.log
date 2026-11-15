@@ -1,0 +1,6 @@
+off fold 1 58.46 48.06
+off fold 2 57.54 46.69
+off fold 3 59.38 47.56
+off fold 4 58.68 48.06
+off fold 5 58.47 47.54
+FINAL {'variant': 'off', 'acc': '58.51±0.59', 'f1': '47.58±0.50', 'fold_f1': [48.06, 46.69, 47.56, 48.06, 47.54], 'fold_acc': [np.float64(58.46), np.float64(57.54), np.float64(59.38), np.float64(58.68), np.float64(58.47)]}

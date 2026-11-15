@@ -1,0 +1,91 @@
+{
+ "variant": "causal",
+ "bucket_pct": {
+  "LONG": 11.33,
+  "NORMAL": 77.2,
+  "SHORT": 11.47
+ },
+ "folds": [
+  {
+   "fold": 1,
+   "acc": 72.3419153290962,
+   "macro_f1": 41.581512956368435,
+   "per_class_f1": {
+    "LBBB": 0.0,
+    "Normal": 83.35,
+    "PAC": 0.6,
+    "PVC": 35.78,
+    "RBBB": 88.18
+   },
+   "n_test": 18566,
+   "refine_epochs_run": 30
+  },
+  {
+   "fold": 2,
+   "acc": 64.46500549651887,
+   "macro_f1": 24.389503381554924,
+   "per_class_f1": {
+    "LBBB": 1.71,
+    "Normal": 82.18,
+    "PAC": 3.34,
+    "PVC": 32.53,
+    "RBBB": 2.19
+   },
+   "n_test": 21832,
+   "refine_epochs_run": 30
+  },
+  {
+   "fold": 3,
+   "acc": 67.2542027508915,
+   "macro_f1": 35.12260763886228,
+   "per_class_f1": {
+    "LBBB": 0.09,
+    "Normal": 81.42,
+    "PAC": 5.89,
+    "PVC": 59.17,
+    "RBBB": 29.06
+   },
+   "n_test": 19630,
+   "refine_epochs_run": 30
+  },
+  {
+   "fold": 4,
+   "acc": 82.44902100030436,
+   "macro_f1": 49.13869434200815,
+   "per_class_f1": {
+    "LBBB": 0.0,
+    "Normal": 91.84,
+    "PAC": 16.98,
+    "PVC": 69.27,
+    "RBBB": 67.6
+   },
+   "n_test": 19714,
+   "refine_epochs_run": 30
+  },
+  {
+   "fold": 5,
+   "acc": 70.33183768058774,
+   "macro_f1": 38.538438934594026,
+   "per_class_f1": {
+    "LBBB": 2.33,
+    "Normal": 83.79,
+    "PAC": 45.94,
+    "PVC": 60.63,
+    "RBBB": 0.0
+   },
+   "n_test": 20281,
+   "refine_epochs_run": 30
+  }
+ ],
+ "acc_mean": 71.36839645147974,
+ "acc_std": 6.154442784941607,
+ "f1_mean": 37.754151450677554,
+ "f1_std": 8.12908925578044,
+ "pooled_per_class_f1": {
+  "LBBB": 1.06,
+  "Normal": 84.59,
+  "PAC": 13.6,
+  "PVC": 48.49,
+  "RBBB": 50.1
+ }
+}

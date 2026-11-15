@@ -1,0 +1,7 @@
+[ptb caps f3] cand 0 {} inner macroF1 55.19 7s
+[ptb caps f3] cand 1 {'cap_n': 3000} inner macroF1 55.19 13s
+[ptb caps f3] cand 2 {'cap_n': 6000, 'cap_a': 6000} inner macroF1 57.61 25s
+[ptb caps f3] cand 3 {'cap_a': 6000} inner macroF1 57.61 36s
+[ptb caps f3] cand 4 {'cap_n': 12000, 'cap_a': 12000} inner macroF1 57.61 47s
+[ptb caps f3] cand 5 {'cap_n': 1500} inner macroF1 55.19 54s
+[ptb caps f3] SELECTED cand 2 {'cap_n': 6000, 'cap_a': 6000} -> outer acc 91.39 macroF1 52.62

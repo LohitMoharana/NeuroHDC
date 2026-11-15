@@ -1,0 +1,42 @@
+{
+ "dataset": "physionet2017",
+ "family": "rhythm",
+ "outer_fold": 3,
+ "candidates": [
+  {},
+  {
+   "rhythm": false
+  },
+  {
+   "short": 0.9,
+   "long": 1.1
+  },
+  {
+   "short": 0.8,
+   "long": 1.2
+  },
+  {
+   "short": 0.75,
+   "long": 1.25
+  },
+  {
+   "short": 0.9,
+   "long": 1.2
+  }
+ ],
+ "inner_scores": [
+  43.51167678638219,
+  46.70676289270941,
+  45.1121789226525,
+  43.47416507227234,
+  43.76558875965711,
+  43.903628361591664
+ ],
+ "selected": 1,
+ "selected_setting": {
+  "rhythm": false
+ },
+ "outer_acc": 59.38414634146342,
+ "outer_macro_f1": 47.55626816202091,
+ "n_test": 16400
+}

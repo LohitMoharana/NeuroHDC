@@ -1,0 +1,26 @@
+     -.--ns INFO     gpi                                ..mbed\gpi_embed.cpp:94   in _embed_init_python              Using Python 3.11.9 interpreter at C:\Users\lohit\AppData\Local\Programs\Python\Python311\python.exe
+     -.--ns INFO     gpi                                ..\gpi\GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (devel)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794617928
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from C:\Users\lohit\AppData\Local\Programs\Python\Python311\Lib\site-packages\cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_assoc_mem.test_assoc_mem (1/1)
+  1660.00ns INFO     cocotb.assoc_mem                   golden beat 0: RTL class=Normal  Python class=Normal
+  3290.00ns INFO     cocotb.assoc_mem                   golden beat 1: RTL class=Normal  Python class=Normal
+878600.00ns INFO     cocotb.assoc_mem                   SET golden :    2 queries, 0 mismatches
+878600.00ns INFO     cocotb.assoc_mem                   SET beats  :  300 queries, 0 mismatches
+878600.00ns INFO     cocotb.assoc_mem                   SET synth  :  227 queries, 0 mismatches
+878600.00ns INFO     cocotb.assoc_mem                   SET ties   :   10 queries, 0 mismatches
+878600.00ns INFO     cocotb.assoc_mem                   forced ties that were the minimum (lowest-index rule exercised): 4
+878600.00ns INFO     cocotb.assoc_mem                   latency start->done: 163 cycles
+878600.00ns INFO     cocotb.assoc_mem                   (true label, RTL label) counts on python-encoded beats [agreement test, not accuracy]: {('LBBB', 'LBBB'): 65, ('Normal', 'Normal'): 136, ('RBBB', 'RBBB'): 34, ('PVC', 'PVC'): 29, ('RBBB', 'PAC'): 1, ('PVC', 'Normal'): 8, ('PAC', 'PVC'): 1, ('PVC', 'LBBB'): 3, ('Normal', 'RBBB'): 4, ('LBBB', 'Normal'): 12, ('RBBB', 'Normal'): 1, ('LBBB', 'PVC'): 1, ('LBBB', 'PAC'): 1, ('Normal', 'PVC'): 1, ('Normal', 'PAC'): 3}
+878600.00ns INFO     cocotb.regression                  test_assoc_mem.test_assoc_mem passed
+878600.00ns INFO     cocotb.regression                  ***************************************************************************************
+                                                        ** TEST                           STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************
+                                                        ** test_assoc_mem.test_assoc_mem   PASS      878600.00          46.09      19062.50  **
+                                                        ***************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0              878600.00          46.09      19061.45  **
+                                                        ***************************************************************************************
+RESULT: 1 passed, 0 failed

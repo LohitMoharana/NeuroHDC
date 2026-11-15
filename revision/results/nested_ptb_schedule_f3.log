@@ -1,0 +1,7 @@
+[ptb schedule f2] cand 0 {} inner macroF1 57.60 7s
+[ptb schedule f2] cand 1 {'lr0': 5} inner macroF1 57.56 13s
+[ptb schedule f2] cand 2 {'lr0': 30} inner macroF1 56.74 20s
+[ptb schedule f2] cand 3 {'epochs': 10} inner macroF1 52.66 22s
+[ptb schedule f2] cand 4 {'epochs': 60} inner macroF1 58.11 35s
+[ptb schedule f2] cand 5 {'epochs': 0} inner macroF1 46.42 35s
+[ptb schedule f2] SELECTED cand 4 {'epochs': 60} -> outer acc 89.06 macroF1 53.40

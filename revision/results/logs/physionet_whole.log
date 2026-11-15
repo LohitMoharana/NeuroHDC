@@ -1,0 +1,7 @@
+whole bucket %: {'SHORT': 9.91, 'NORMAL': 71.95, 'LONG': 18.14}
+whole fold 1 56.49 44.14
+whole fold 2 56.17 44.45
+whole fold 3 57.98 46.42
+whole fold 4 57.06 44.84
+whole fold 5 56.72 45.39
+FINAL {'variant': 'whole', 'acc': '56.88±0.62', 'f1': '45.05±0.80', 'fold_f1': [44.14, 44.45, 46.42, 44.84, 45.39], 'fold_acc': [np.float64(56.49), np.float64(56.17), np.float64(57.98), np.float64(57.06), np.float64(56.72)]}

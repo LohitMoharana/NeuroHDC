@@ -1,0 +1,6 @@
+[rhythm f4] cand 0 {} inner macroF1 37.46 (folds [35.85, 42.39, 34.14]) 161s
+[rhythm f4] cand 1 {'short': 0.9, 'long': 1.1} inner macroF1 32.37 (folds [27.32, 36.6, 33.18]) 358s
+[rhythm f4] cand 2 {'short': 0.8, 'long': 1.2} inner macroF1 36.13 (folds [39.91, 36.25, 32.23]) 516s
+[rhythm f4] cand 3 {'short': 0.75, 'long': 1.25} inner macroF1 34.80 (folds [37.05, 31.88, 35.46]) 709s
+[rhythm f4] cand 4 {'short': 0.9, 'long': 1.2} inner macroF1 33.97 (folds [29.35, 42.11, 30.46]) 887s
+[rhythm f4] SELECTED cand 0 {} -> outer acc 70.01 macroF1 38.54

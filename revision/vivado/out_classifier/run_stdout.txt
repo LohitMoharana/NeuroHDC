@@ -1,0 +1,42 @@
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source ../run_classifier.tcl
+# set top    [lindex $argv 0]
+# set period [lindex $argv 1]
+# set outdir [file normalize [lindex $argv 2]]
+# set root   [file normalize [file join [file dirname [info script]] .. ..]]
+# file mkdir $outdir
+# cd $outdir                                ;
+# file copy -force [file join $root revision vivado proto_chunks.dat] $outdir
+# set part xc7z010clg225-3
+# read_verilog [file join $root hw rtl delta_tokenizer.v]
+# read_verilog [file join $root hw rtl hdc_bind_bundle.v]
+# read_verilog [file join $root hw rtl top_shde_core.v]
+# if {$top eq "top_shde_wrapper"} {
+#     read_verilog [file join $root hw rtl top_shde_wrapper.v]
+# } elseif {$top eq "top_shde_classifier"} {
+#     read_verilog [file join $root revision rtl assoc_mem.v]
+#     read_verilog [file join $root revision rtl top_shde_classifier.v]
+# } else { error "unknown top $top" }
+# set xdc [file join $outdir clk.xdc]
+# set fh [open $xdc w]
+# puts $fh "create_clock -period $period -name clk -waveform {0.000 [expr {$period/2.0}]} \[get_ports clk\]"
+# close $fh
+# synth_design -top $top -part $part -mode out_of_context
+Command: synth_design -top top_shde_classifier -part xc7z010clg225-3 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 21672
+couldn't read file "D:/Softwares/Vivado/Vivado/2022.2/scripts/rt/data/lib_core.tcl": no such file or directory
+INFO: [Common 17-83] Releasing license: Synthesis
+5 Infos, 0 Warnings, 0 Critical Warnings and 1 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 13 20:45:57 2026...

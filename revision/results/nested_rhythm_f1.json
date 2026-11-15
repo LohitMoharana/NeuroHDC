@@ -1,0 +1,36 @@
+{
+ "family": "rhythm",
+ "outer_fold": 1,
+ "candidates": [
+  {},
+  {
+   "short": 0.9,
+   "long": 1.1
+  },
+  {
+   "short": 0.8,
+   "long": 1.2
+  },
+  {
+   "short": 0.75,
+   "long": 1.25
+  },
+  {
+   "short": 0.9,
+   "long": 1.2
+  }
+ ],
+ "inner_scores": [
+  36.481710148337015,
+  32.94123670944466,
+  34.007072289850605,
+  34.025058889247994,
+  35.67829313219348
+ ],
+ "selected": 0,
+ "selected_setting": {},
+ "outer_acc": 73.5915113648605,
+ "outer_macro_f1": 41.25821048078399,
+ "inner_train_records": 40,
+ "n_test": 18566
+}

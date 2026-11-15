@@ -1,0 +1,7 @@
+causal8 bucket %: {'SHORT': 15.33, 'NORMAL': 68.16, 'LONG': 16.52}
+causal8 fold 1 56.01 44.08
+causal8 fold 2 56.59 44.52
+causal8 fold 3 56.91 45.7
+causal8 fold 4 55.9 44.99
+causal8 fold 5 57.17 45.97
+FINAL {'variant': 'causal8', 'acc': '56.51±0.50', 'f1': '45.05±0.70', 'fold_f1': [44.08, 44.52, 45.7, 44.99, 45.97], 'fold_acc': [np.float64(56.01), np.float64(56.59), np.float64(56.91), np.float64(55.9), np.float64(57.17)]}

@@ -1,0 +1,19 @@
+     -.--ns INFO     gpi                                ..mbed\gpi_embed.cpp:94   in _embed_init_python              Using Python 3.11.9 interpreter at C:\Users\lohit\AppData\Local\Programs\Python\Python311\python.exe
+     -.--ns INFO     gpi                                ..\gpi\GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (devel)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794584564
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from C:\Users\lohit\AppData\Local\Programs\Python\Python311\Lib\site-packages\cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_wrapper_cls.test_cls (1/1)
+509770.00ns INFO     cocotb.top_shde_wrapper_cls        windows driven 60; chunks captured 480; class results 60
+509770.00ns INFO     cocotb.top_shde_wrapper_cls        mismatches 0/60; windows with non-zero HV 60; RTL class histogram {'PAC': 8, 'PVC': 32, 'Normal': 18, 'RBBB': 2}
+509770.00ns INFO     cocotb.regression                  test_wrapper_cls.test_cls passed
+509770.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_wrapper_cls.test_cls      PASS      509770.00           3.13     162764.42  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0             509770.00           3.13     162764.42  **
+                                                        **************************************************************************************
+RESULT: 1 passed, 0 failed

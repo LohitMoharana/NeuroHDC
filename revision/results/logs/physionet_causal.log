@@ -1,0 +1,7 @@
+causal bucket %: {'SHORT': 15.06, 'NORMAL': 68.53, 'LONG': 16.41}
+causal fold 1 55.5 44.16
+causal fold 2 56.14 44.75
+causal fold 3 56.22 44.71
+causal fold 4 55.92 44.34
+causal fold 5 56.78 45.19
+FINAL {'variant': 'causal', 'acc': '56.11±0.42', 'f1': '44.63±0.36', 'fold_f1': [44.16, 44.75, 44.71, 44.34, 45.19], 'fold_acc': [np.float64(55.5), np.float64(56.14), np.float64(56.22), np.float64(55.92), np.float64(56.78)]}

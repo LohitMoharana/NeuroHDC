@@ -1,0 +1,38 @@
+{
+  "DESIGN_NAME": "top_shde_wrapper2048_cls",
+  "VERILOG_FILES": [
+    "dir::src/delta_tokenizer.v",
+    "dir::src/hdc_bind_bundle.v",
+    "dir::src/top_shde_core.v",
+    "dir::src/proto_rom2048.v",
+    "dir::src/assoc_mem_stream2048.v",
+    "dir::src/top_shde_wrapper2048_cls.v"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 50.0,
+  "FP_CORE_UTIL": 25,
+  "PL_TARGET_DENSITY": 0.3,
+  "GRT_REPAIR_ANTENNAS": 1,
+  "GRT_MAX_DIODE_INS_ITERS": 30,
+  "ROUTING_CORES": 4,
+  "PL_RESIZER_DESIGN_OPTIMIZATIONS": 1,
+  "PL_RESIZER_TIMING_OPTIMIZATIONS": 1,
+  "GLB_RESIZER_DESIGN_OPTIMIZATIONS": 1,
+  "GLB_RESIZER_TIMING_OPTIMIZATIONS": 1,
+  "MAX_FANOUT_CONSTRAINT": 32,
+  "PL_RESIZER_BUFFER_INPUT_PORTS": 1,
+  "GLB_RESIZER_BUFFER_INPUT_PORTS": 1,
+  "CTS_SINK_CLUSTERING_SIZE": 4,
+  "CTS_SINK_CLUSTERING_MAX_DIAMETER": 30,
+  "CTS_CLK_BUFFERS": [
+    "sky130_fd_sc_hd__clkbuf_4",
+    "sky130_fd_sc_hd__clkbuf_8",
+    "sky130_fd_sc_hd__clkbuf_16"
+  ],
+  "PL_RESIZER_MAX_WIRE_LENGTH": 0,
+  "GLB_RESIZER_MAX_WIRE_LENGTH": 0,
+  "PDK": "sky130A",
+  "SYNTH_MAX_FANOUT": 32,
+  "PL_RESIZER_MAX_SLEW_MARGIN": 30,
+  "GLB_RESIZER_MAX_SLEW_MARGIN": 30
+}
